@@ -3,9 +3,50 @@ package com.onesixty.seven.core.intefaces;
 import com.onesixty.seven.core.objects.LocationObject;
 
 /**
- * The Interface ILocationManager.
+ * The Interface ICore.
  */
-public interface ILocationManager {
+public interface ICore {
+
+	/**
+	 * The Enum Event.
+	 */
+	public static enum Event {
+
+		/** The event all. */
+		EVENT_ALL,
+
+		/**
+		 * When the current location of the device changes.
+		 * 
+		 * Object: LocationObject
+		 */
+		CURRENT_LOCATION_UPDATE,
+
+		/**
+		 * When the device enters in the radius of a saved location associated
+		 * with a reminder.
+		 * 
+		 * Object: ReminderObject
+		 */
+		EVENT_ENTER_LOCATION_RADIUS,
+
+		/**
+		 * When the device exits the radius of a saved location associated with
+		 * a reminder.
+		 * 
+		 * Object: ReminderObject
+		 */
+		EVENT_EXIT_LOCATION_RADIUS
+
+	}
+
+	/**
+	 * Sets the current location.
+	 * 
+	 * @param newLocation
+	 *            the new current location
+	 */
+	public void setCurrentLocation(LocationObject newLocation);
 
 	/**
 	 * Adds the listener.
@@ -31,7 +72,7 @@ public interface ILocationManager {
 	 * @param data
 	 *            the data associated with the core event.
 	 */
-	public void broadcastEvent(LocationObject newLocation);
+	public void broadcastEvent(ICore.Event type, Object data);
 
 	/**
 	 * The listener interface for receiving events. The class that is interested
@@ -40,7 +81,7 @@ public interface ILocationManager {
 	 * <code>addIListener</code> method. When the event occurs, that object's
 	 * appropriate method is invoked.
 	 * 
-	 * @see IEvent
+	 * @see ICore
 	 */
 	public interface IListener {
 
@@ -48,8 +89,9 @@ public interface ILocationManager {
 		 * This method is called on the listeners when the location changes.
 		 * 
 		 * @param data
-		 *            the new location
+		 *            the data associated with the event.
 		 */
-		public void onLocationChange(LocationObject newLocation);
+		public void onCoreEvent(Object data);
 	}
+
 }

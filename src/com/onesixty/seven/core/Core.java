@@ -1,7 +1,6 @@
 package com.onesixty.seven.core;
 
-import com.onesixty.seven.core.intefaces.ICoreEvent;
-import com.onesixty.seven.core.intefaces.ILocationManager;
+import com.onesixty.seven.core.intefaces.ICore;
 import com.onesixty.seven.core.objects.LocationObject;
 
 /**
@@ -13,12 +12,18 @@ import com.onesixty.seven.core.objects.LocationObject;
  * @author Anupam
  * 
  */
-public class Core implements ICoreEvent, ILocationManager.IListener {
+public class Core implements ICore {
 
 	/**
 	 * Instantiates a new core.
 	 */
 	public Core() {
+
+	}
+
+	@Override
+	public void setCurrentLocation(LocationObject newLocation) {
+		// TODO Auto-generated method stub
 
 	}
 
@@ -30,12 +35,6 @@ public class Core implements ICoreEvent, ILocationManager.IListener {
 
 	@Override
 	public void removeListener(IListener listener) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onLocationChange(LocationObject newLocation) {
 		// TODO Auto-generated method stub
 
 	}
