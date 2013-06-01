@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.onesixty.seven.core.objects.Reminder;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface IReminderManager.
  */
