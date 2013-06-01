@@ -3,7 +3,7 @@ package com.onesixty.seven.core.objects;
 /**
  * The Class Reminder.
  */
-public class Reminder {
+public class ReminderObject {
 
 	/** The id. */
 	private int id;
@@ -111,7 +111,7 @@ public class Reminder {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		return (obj instanceof Reminder) ? this.id == ((Reminder) obj).id
+		return (obj instanceof ReminderObject) ? this.id == ((ReminderObject) obj).id
 				: false;
 	}
 

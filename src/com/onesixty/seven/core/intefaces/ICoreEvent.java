@@ -9,13 +9,78 @@ public interface ICoreEvent {
 	 * The Enum Event.
 	 */
 	public static enum Event {
-		// TODO Add Core events here.
+
+		EVENT_ALL,
+
+		/**
+		 * When the current location of the device changes.
+		 * 
+		 * Object: LocationObject
+		 */
+		CURRENT_LOCATION_UPDATE,
+
+		/**
+		 * When the device enters in the radius of a saved location associated
+		 * with a reminder.
+		 * 
+		 * Object: ReminderObject
+		 */
+		EVENT_ENTER_LOCATION,
+
+		/**
+		 * When the device exits the radius of a saved location associated with
+		 * a reminder.
+		 * 
+		 * Object: ReminderObject
+		 */
+		EVENT_EXIT_LOCATION
+
 	}
 
 	/**
-	 * The Enum Status.
+	 * Adds the listener.
+	 * 
+	 * @param listener
+	 *            the listener
 	 */
-	public static enum Status {
-		// TODO Add status messages here. start, end, success, failure.
+	public void addListener(IListener listener);
+
+	/**
+	 * Removes the listener.
+	 * 
+	 * @param listener
+	 *            the listener
+	 */
+	public void removeListener(IListener listener);
+
+	/**
+	 * Broadcast event.
+	 * 
+	 * @param type
+	 *            the type of the core event.
+	 * @param data
+	 *            the data associated with the core event.
+	 */
+	public void broadcastEvent(ICoreEvent.Event type, Object data);
+
+	/**
+	 * The listener interface for receiving events. The class that is interested
+	 * in processing an event implements this interface, and the object created
+	 * with that class is registered with a component using the component's
+	 * <code>addIListener</code> method. When the event occurs, that object's
+	 * appropriate method is invoked.
+	 * 
+	 * @see ICoreEvent
+	 */
+	public interface IListener {
+
+		/**
+		 * This method is called on the listeners when the location changes.
+		 * 
+		 * @param data
+		 *            the data associated with the event.
+		 */
+		public void onCoreEvent(Object data);
 	}
+
 }

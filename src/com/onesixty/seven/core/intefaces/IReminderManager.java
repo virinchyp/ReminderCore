@@ -2,7 +2,7 @@ package com.onesixty.seven.core.intefaces;
 
 import java.util.List;
 
-import com.onesixty.seven.core.objects.Reminder;
+import com.onesixty.seven.core.objects.ReminderObject;
 
 /**
  * The Interface IReminderManager.
@@ -16,7 +16,7 @@ public interface IReminderManager {
 	 *            the Reminder.
 	 * @return the reminder id.
 	 */
-	public int addReminder(Reminder item);
+	public int addReminder(ReminderObject item);
 
 	/**
 	 * Modify a reminder with a given ID.
@@ -27,7 +27,7 @@ public interface IReminderManager {
 	 *            the new reminder.
 	 * @return true if reminder is modified, false otherwise.
 	 */
-	public boolean modifyReminder(int id, Reminder item);
+	public boolean modifyReminder(int id, ReminderObject item);
 
 	/**
 	 * Delete a reminder with a given ID.
@@ -45,14 +45,14 @@ public interface IReminderManager {
 	 *            the ID of the reminder to return.
 	 * @return the reminder.
 	 */
-	public Reminder getReminder(int id);
+	public ReminderObject getReminder(int id);
 
 	/**
 	 * Returns all the reminders currently stored.
 	 * 
 	 * @return the <code>List</code> containing all the reminders
 	 */
-	public List<Reminder> getAllReminders();
+	public List<ReminderObject> getAllReminders();
 
 	/**
 	 * Returns true if and only if reminder with this ID is present, false

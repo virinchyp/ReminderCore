@@ -1,5 +1,7 @@
 package com.onesixty.seven.core.intefaces;
 
+import com.onesixty.seven.core.objects.LocationObject;
+
 /**
  * The Interface ILocationManager.
  */
@@ -22,6 +24,16 @@ public interface ILocationManager {
 	public void removeListener(IListener listener);
 
 	/**
+	 * Broadcast event.
+	 * 
+	 * @param type
+	 *            the type of the core event.
+	 * @param data
+	 *            the data associated with the core event.
+	 */
+	public void broadcastEvent(LocationObject newLocation);
+
+	/**
 	 * The listener interface for receiving events. The class that is interested
 	 * in processing an event implements this interface, and the object created
 	 * with that class is registered with a component using the component's
@@ -38,6 +50,6 @@ public interface ILocationManager {
 		 * @param data
 		 *            the new location
 		 */
-		public void onLocationChange(Object data);
+		public void onLocationChange(LocationObject newLocation);
 	}
 }
