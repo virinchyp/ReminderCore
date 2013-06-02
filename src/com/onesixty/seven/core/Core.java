@@ -42,7 +42,7 @@ public class Core implements ICore {
 	public Core() {
 		locations = new ArrayList<>();
 		listenerMap = new HashMap<ICore.Event, List<IListener>>();
-		// reminderManager = new ReminderManager();
+		reminderManager = new ReminderManager();
 	}
 
 	/*
