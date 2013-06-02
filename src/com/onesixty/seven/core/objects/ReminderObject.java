@@ -11,11 +11,8 @@ public class ReminderObject {
 	/** The message. */
 	private String message;
 
-	/** The latitude. */
-	private double latitude;
-
-	/** The longitude. */
-	private double longitude;
+	/** The location. */
+	private LocationObject location;
 
 	/**
 	 * Gets the id.
@@ -56,41 +53,22 @@ public class ReminderObject {
 	}
 
 	/**
-	 * Gets the latitude.
+	 * Gets the location.
 	 * 
-	 * @return the latitude
+	 * @return the location
 	 */
-	public double getLatitude() {
-		return latitude;
+	public LocationObject getLocation() {
+		return location;
 	}
 
 	/**
-	 * Sets the latitude.
+	 * Sets the location.
 	 * 
-	 * @param latitude
-	 *            the new latitude
+	 * @param location
+	 *            the new location
 	 */
-	public void setLatitude(double latitude) {
-		this.latitude = latitude;
-	}
-
-	/**
-	 * Gets the longitude.
-	 * 
-	 * @return the longitude
-	 */
-	public double getLongitude() {
-		return longitude;
-	}
-
-	/**
-	 * Sets the longitude.
-	 * 
-	 * @param longitude
-	 *            the new longitude
-	 */
-	public void setLongitude(double longitude) {
-		this.longitude = longitude;
+	public void setLocation(LocationObject location) {
+		this.location = location;
 	}
 
 	/*
