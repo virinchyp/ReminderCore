@@ -19,8 +19,14 @@ import com.onesixty.seven.core.objects.LocationObject;
  */
 public class Core implements ICore {
 
+	/** The locations. */
 	private List<LocationObject> locations;
+
+	/** The listener map. */
 	private Map<ICore.Event, List<IListener>> listenerMap;
+
+	private LocationObject lastLocation;
+	private LocationObject currentLocation;
 
 	/**
 	 * Instantiates a new core.
@@ -30,12 +36,28 @@ public class Core implements ICore {
 		listenerMap = new HashMap<ICore.Event, List<IListener>>();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.onesixty.seven.core.intefaces.ICore#setCurrentLocation(com.onesixty
+	 * .seven.core.objects.LocationObject)
+	 */
 	@Override
 	public void setCurrentLocation(LocationObject newLocation) {
-		// TODO Auto-generated method stub
-
+		lastLocation = currentLocation;
+		currentLocation = newLocation;
+		// TODO getProximityLocationFor(newLocation);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.onesixty.seven.core.intefaces.ICore#addListener(com.onesixty.seven
+	 * .core.intefaces.ICore.Event,
+	 * com.onesixty.seven.core.intefaces.ICore.IListener)
+	 */
 	@Override
 	public void addListener(Event type, IListener listener) {
 		List<IListener> listeners = listenerMap.get(type);
@@ -45,6 +67,14 @@ public class Core implements ICore {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.onesixty.seven.core.intefaces.ICore#removeListener(com.onesixty.seven
+	 * .core.intefaces.ICore.Event,
+	 * com.onesixty.seven.core.intefaces.ICore.IListener)
+	 */
 	@Override
 	public void removeListener(Event type, IListener listener) {
 		List<IListener> listeners = listenerMap.get(type);
@@ -53,9 +83,33 @@ public class Core implements ICore {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.onesixty.seven.core.intefaces.ICore#broadcastEvent(com.onesixty.seven
+	 * .core.intefaces.ICore.Event, java.lang.Object)
+	 */
 	@Override
 	public void broadcastEvent(Event type, Object data) {
-		// TODO Auto-generated method stub
 
+		List<IListener> listeners = listenerMap.get(Event.EVENT_ALL);
+		if (listeners != null) {
+			for (IListener listener : listeners) {
+				listener.onCoreEvent(type, data);
+			}
+		}
+
+		listeners = listenerMap.get(type);
+		if (listeners != null) {
+			for (IListener listener : listeners) {
+				listener.onCoreEvent(type, data);
+			}
+		}
+	}
+
+	private LocationObject getProximityLocationFor(LocationObject location) {
+		// TODO
+		return null;
 	}
 }

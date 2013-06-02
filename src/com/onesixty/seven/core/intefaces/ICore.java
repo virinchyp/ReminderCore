@@ -12,7 +12,10 @@ public interface ICore {
 	 */
 	public static enum Event {
 
-		/** The event all. */
+		/**
+		 * The event all. Only used for listening to all events. Should not be
+		 * used for broadcast.
+		 */
 		EVENT_ALL,
 
 		/**
@@ -91,7 +94,7 @@ public interface ICore {
 		 * @param data
 		 *            the data associated with the event.
 		 */
-		public void onCoreEvent(Object data);
+		public void onCoreEvent(Event type, Object data);
 	}
 
 }
