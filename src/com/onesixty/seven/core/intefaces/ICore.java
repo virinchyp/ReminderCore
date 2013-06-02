@@ -52,8 +52,17 @@ public interface ICore {
 	public void setCurrentLocation(LocationObject newLocation);
 
 	/**
+	 * Gets the reminder manager.
+	 * 
+	 * @return the reminder manager
+	 */
+	public IReminderManager getReminderManager();
+
+	/**
 	 * Adds the listener.
 	 * 
+	 * @param type
+	 *            the type
 	 * @param listener
 	 *            the listener
 	 */
@@ -62,6 +71,8 @@ public interface ICore {
 	/**
 	 * Removes the listener.
 	 * 
+	 * @param type
+	 *            the type
 	 * @param listener
 	 *            the listener
 	 */
@@ -91,6 +102,8 @@ public interface ICore {
 		/**
 		 * This method is called on the listeners when the location changes.
 		 * 
+		 * @param type
+		 *            the type
 		 * @param data
 		 *            the data associated with the event.
 		 */

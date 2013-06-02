@@ -6,13 +6,15 @@ import java.util.List;
 import java.util.Map;
 
 import com.onesixty.seven.core.intefaces.ICore;
+import com.onesixty.seven.core.intefaces.IReminderManager;
 import com.onesixty.seven.core.objects.LocationObject;
 
 /**
  * This class is the only entry point for the platform to the core. The core is
- * responsible for keeping track of the saved reminders with respect to the
- * current location of the device. It does so by communicating with
- * <code>ReminderManager</code> and <code>LocationManager</code>.
+ * responsible for keeping track of the saved locations related to the reminders
+ * and firing off events when the current location enters or exits the saved
+ * location. It does so by communicating with <code>ReminderManager</code> and
+ * <code>LocationManager</code>.
  * 
  * @author Anupam
  * 
@@ -25,8 +27,14 @@ public class Core implements ICore {
 	/** The listener map. */
 	private Map<ICore.Event, List<IListener>> listenerMap;
 
+	/** The last location. */
 	private LocationObject lastLocation;
+
+	/** The current location. */
 	private LocationObject currentLocation;
+
+	/** The reminder manager. */
+	private IReminderManager reminderManager;
 
 	/**
 	 * Instantiates a new core.
@@ -34,6 +42,7 @@ public class Core implements ICore {
 	public Core() {
 		locations = new ArrayList<>();
 		listenerMap = new HashMap<ICore.Event, List<IListener>>();
+		// reminderManager = new ReminderManager();
 	}
 
 	/*
@@ -48,6 +57,16 @@ public class Core implements ICore {
 		lastLocation = currentLocation;
 		currentLocation = newLocation;
 		// TODO getProximityLocationFor(newLocation);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.onesixty.seven.core.intefaces.ICore#getReminderManager()
+	 */
+	@Override
+	public IReminderManager getReminderManager() {
+		return reminderManager;
 	}
 
 	/*
@@ -108,6 +127,13 @@ public class Core implements ICore {
 		}
 	}
 
+	/**
+	 * Gets the proximity location for.
+	 * 
+	 * @param location
+	 *            the location
+	 * @return the proximity location for
+	 */
 	private LocationObject getProximityLocationFor(LocationObject location) {
 		// TODO
 		return null;
