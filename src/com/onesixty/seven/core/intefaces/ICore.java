@@ -54,7 +54,7 @@ public interface ICore {
 	 * @param listener
 	 *            the listener
 	 */
-	public void addListener(IListener listener);
+	public void addListener(Event type, IListener listener);
 
 	/**
 	 * Removes the listener.
@@ -62,7 +62,7 @@ public interface ICore {
 	 * @param listener
 	 *            the listener
 	 */
-	public void removeListener(IListener listener);
+	public void removeListener(Event type, IListener listener);
 
 	/**
 	 * Broadcast event.

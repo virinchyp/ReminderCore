@@ -1,5 +1,10 @@
 package com.onesixty.seven.core;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import com.onesixty.seven.core.intefaces.ICore;
 import com.onesixty.seven.core.objects.LocationObject;
 
@@ -14,11 +19,15 @@ import com.onesixty.seven.core.objects.LocationObject;
  */
 public class Core implements ICore {
 
+	private List<LocationObject> locations;
+	private Map<ICore.Event, List<IListener>> listenerMap;
+
 	/**
 	 * Instantiates a new core.
 	 */
 	public Core() {
-
+		locations = new ArrayList<>();
+		listenerMap = new HashMap<ICore.Event, List<IListener>>();
 	}
 
 	@Override
@@ -28,15 +37,20 @@ public class Core implements ICore {
 	}
 
 	@Override
-	public void addListener(IListener listener) {
-		// TODO Auto-generated method stub
-
+	public void addListener(Event type, IListener listener) {
+		List<IListener> listeners = listenerMap.get(type);
+		if (listeners == null) {
+			listeners = new ArrayList<IListener>();
+			listeners.add(listener);
+		}
 	}
 
 	@Override
-	public void removeListener(IListener listener) {
-		// TODO Auto-generated method stub
-
+	public void removeListener(Event type, IListener listener) {
+		List<IListener> listeners = listenerMap.get(type);
+		if (listeners != null) {
+			listeners.remove(listener);
+		}
 	}
 
 	@Override
