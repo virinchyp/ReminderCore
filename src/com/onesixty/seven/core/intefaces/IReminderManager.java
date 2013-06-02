@@ -10,6 +10,18 @@ import com.onesixty.seven.core.objects.ReminderObject;
 public interface IReminderManager {
 
 	/**
+	 * The Enum ReminderType.
+	 */
+	public static enum ReminderType {
+
+		/** Reminder set for entering a location. */
+		ENTER_LOCATION,
+
+		/** Reminder set for exiting a location. */
+		EXIT_LOCATION
+	}
+
+	/**
 	 * Adds a reminder.
 	 * 
 	 * @param item
@@ -46,6 +58,15 @@ public interface IReminderManager {
 	 * @return the reminder.
 	 */
 	public ReminderObject getReminder(int id);
+
+	/**
+	 * Gets the reminders for a type.
+	 * 
+	 * @param type
+	 *            the type of the reminder to get.
+	 * @return the associated reminders for the type
+	 */
+	public List<ReminderObject> getRemindersForType(ReminderType type);
 
 	/**
 	 * Returns all the reminders currently stored.
