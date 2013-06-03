@@ -13,8 +13,7 @@ import com.onesixty.seven.core.objects.LocationObject;
  * This class is the only entry point for the platform to the core. The core is
  * responsible for keeping track of the saved locations related to the reminders
  * and firing off events when the current location enters or exits the saved
- * location. It does so by communicating with <code>ReminderManager</code> and
- * <code>LocationManager</code>.
+ * location. It does so by communicating with <code>ReminderManager</code>.
  * 
  * @author Anupam
  * 
