@@ -10,8 +10,9 @@ public class ReminderObject extends PreferenceObject {
 	/** The message. */
 	private String message;
 
-	public ReminderObject(long id, String message, ILocation location, float pDistnace) {
-		super(id, location, pDistnace);
+	public ReminderObject(long id, String message, ILocation location,
+			float pDistnace, boolean notifyUser) {
+		super(id, location, pDistnace, notifyUser);
 		this.message = message;
 	}
 
