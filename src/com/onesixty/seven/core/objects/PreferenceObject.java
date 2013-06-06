@@ -5,7 +5,7 @@ import com.onesixty.seven.core.intefaces.ILocation;
 /**
  * The Class UserPreferenceObject.
  */
-public class UserPreferenceObject {
+public class PreferenceObject {
 
 	/** The id. */
 	protected final int id;
@@ -19,7 +19,7 @@ public class UserPreferenceObject {
 	 * @param theId
 	 *            the the id
 	 */
-	public UserPreferenceObject(int theId, ILocation theLocation) {
+	public PreferenceObject(int theId, ILocation theLocation) {
 		this.id = theId;
 		this.location = theLocation;
 	}

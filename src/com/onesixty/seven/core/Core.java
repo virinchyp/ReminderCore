@@ -7,7 +7,7 @@ import java.util.Map;
 
 import com.onesixty.seven.core.intefaces.ICore;
 import com.onesixty.seven.core.intefaces.ILocation;
-import com.onesixty.seven.core.intefaces.IUserPreferenceManager;
+import com.onesixty.seven.core.intefaces.IManager;
 
 /**
  * This class is the only entry point for the platform to the core. The core is
@@ -33,13 +33,13 @@ public class Core implements ICore {
 	private ILocation currentLocation;
 
 	/** The reminder manager. */
-	private IUserPreferenceManager userPreferenceManager;
+	private IManager userPreferenceManager;
 
 	/**
 	 * Instantiates a new core.
 	 */
 	public Core() {
-		savedLocations = new ArrayList<>();
+		savedLocations = new ArrayList<ILocation>();
 		listenerMap = new HashMap<ICore.Event, List<IListener>>();
 		userPreferenceManager = new UserPreferenceManager();
 	}
@@ -64,7 +64,7 @@ public class Core implements ICore {
 	 * @see com.onesixty.seven.core.intefaces.ICore#getReminderManager()
 	 */
 	@Override
-	public IUserPreferenceManager getUserPreferenceManager() {
+	public IManager getUserPreferenceManager() {
 		return userPreferenceManager;
 	}
 

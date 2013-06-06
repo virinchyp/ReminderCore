@@ -2,10 +2,10 @@ package com.onesixty.seven.core;
 
 import java.util.List;
 
-import com.onesixty.seven.core.intefaces.IUserPreferenceManager;
+import com.onesixty.seven.core.intefaces.IManager;
 import com.onesixty.seven.core.objects.PhoneSettingObject;
 import com.onesixty.seven.core.objects.ReminderObject;
-import com.onesixty.seven.core.objects.UserPreferenceObject;
+import com.onesixty.seven.core.objects.PreferenceObject;
 
 /**
  * 
@@ -15,16 +15,16 @@ import com.onesixty.seven.core.objects.UserPreferenceObject;
  * @author Anupam
  * 
  */
-class UserPreferenceManager implements IUserPreferenceManager {
+class UserPreferenceManager implements IManager {
 
 	@Override
-	public int addPreference(UserPreferenceObject item) {
+	public int addPreference(PreferenceObject item) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public boolean modifyPreference(int id, UserPreferenceObject item) {
+	public boolean modifyPreference(int id, PreferenceObject item) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -36,20 +36,20 @@ class UserPreferenceManager implements IUserPreferenceManager {
 	}
 
 	@Override
-	public UserPreferenceObject getPreference(int id) {
+	public PreferenceObject getPreference(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<UserPreferenceObject> getPreferencesForType(
-			UserPreferenceType type) {
+	public List<PreferenceObject> getPreferencesForType(
+			PreferenceType type) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<UserPreferenceObject> getAllPreferences() {
+	public List<PreferenceObject> getAllPreferences() {
 		// TODO Auto-generated method stub
 		return null;
 	}

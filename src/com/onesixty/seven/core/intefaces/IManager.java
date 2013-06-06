@@ -3,18 +3,18 @@ package com.onesixty.seven.core.intefaces;
 import java.util.List;
 
 import com.onesixty.seven.core.objects.PhoneSettingObject;
+import com.onesixty.seven.core.objects.PreferenceObject;
 import com.onesixty.seven.core.objects.ReminderObject;
-import com.onesixty.seven.core.objects.UserPreferenceObject;
 
 /**
  * The Interface IUserPreferenceManager.
  */
-public interface IUserPreferenceManager {
+public interface IManager {
 
 	/**
 	 * The Enum UserPreferenceType.
 	 */
-	public static enum UserPreferenceType {
+	public static enum PreferenceType {
 
 		/** User Preference set for entering a location. */
 		ENTER_LOCATION,
@@ -30,7 +30,7 @@ public interface IUserPreferenceManager {
 	 *            the user preference.
 	 * @return the user preference id.
 	 */
-	public int addPreference(UserPreferenceObject item);
+	public int addPreference(PreferenceObject item);
 
 	/**
 	 * Modify a user preference with a given ID.
@@ -41,7 +41,7 @@ public interface IUserPreferenceManager {
 	 *            the new user preference.
 	 * @return true if user preference is modified, false otherwise.
 	 */
-	public boolean modifyPreference(int id, UserPreferenceObject item);
+	public boolean modifyPreference(int id, PreferenceObject item);
 
 	/**
 	 * Delete a user preference with a given ID.
@@ -59,7 +59,7 @@ public interface IUserPreferenceManager {
 	 *            the ID of the user preference to return.
 	 * @return the user preference.
 	 */
-	public UserPreferenceObject getPreference(int id);
+	public PreferenceObject getPreference(int id);
 
 	/**
 	 * Gets the user preference for a type.
@@ -68,20 +68,19 @@ public interface IUserPreferenceManager {
 	 *            the type of the user preference to get.
 	 * @return the associated user preference for the type
 	 */
-	public List<UserPreferenceObject> getPreferencesForType(
-			UserPreferenceType type);
+	public List<PreferenceObject> getPreferencesForType(PreferenceType type);
 
 	/**
 	 * Returns all the user preferences currently stored.
 	 * 
 	 * @return the <code>List</code> containing all the user preference
 	 */
-	public List<UserPreferenceObject> getAllPreferences();
+	public List<PreferenceObject> getAllPreferences();
 
 	/**
-	 * Gets the all user preferences.
+	 * Gets the all reminders currently stored.
 	 * 
-	 * @return the all user preference
+	 * @return the all reminders
 	 */
 	public List<ReminderObject> getAllReminders();
 

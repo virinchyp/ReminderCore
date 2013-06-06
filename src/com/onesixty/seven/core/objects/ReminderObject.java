@@ -5,7 +5,7 @@ import com.onesixty.seven.core.intefaces.ILocation;
 /**
  * The Class Reminder.
  */
-public class ReminderObject extends UserPreferenceObject {
+public class ReminderObject extends PreferenceObject {
 
 	/** The message. */
 	private String message;

@@ -54,7 +54,7 @@ public interface ICore {
 	 * 
 	 * @return the reminder manager
 	 */
-	public IUserPreferenceManager getUserPreferenceManager();
+	public IManager getUserPreferenceManager();
 
 	/**
 	 * Adds the listener.

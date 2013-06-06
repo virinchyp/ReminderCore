@@ -5,7 +5,7 @@ import com.onesixty.seven.core.intefaces.ILocation;
 /**
  * The Class PhoneSettingObject.
  */
-public class PhoneSettingObject extends UserPreferenceObject {
+public class PhoneSettingObject extends PreferenceObject {
 
 	/** The vibration. */
 	private boolean vibration;
