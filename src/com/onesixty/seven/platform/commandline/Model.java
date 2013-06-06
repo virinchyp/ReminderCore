@@ -1,7 +1,14 @@
 package com.onesixty.seven.platform.commandline;
 
-public class Model {
+import com.onesixty.seven.core.intefaces.ICore;
+import com.onesixty.seven.core.intefaces.ICore.Event;
+
+public class Model implements ICore.IListener {
 	
+	public void start(Character endCh)
+	{
+		
+	}
 	
 	public static void main(String[] args)
 	{
@@ -21,6 +28,14 @@ public class Model {
 			System.out.println("Exiting");
 			System.exit(0);
 		}
+		
+		
+		
+	}
+
+	@Override
+	public void onCoreEvent(Event type, Object data) {
+		// TODO Auto-generated method stub
 		
 	}
 

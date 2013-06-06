@@ -34,7 +34,7 @@ public class PreferenceObject {
 	 * 
 	 * @return the id
 	 */
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
