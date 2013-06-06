@@ -38,9 +38,9 @@ public class PhoneSettingObject extends PreferenceObject {
 	 * @param soundLevel
 	 *            the sound level
 	 */
-	public PhoneSettingObject(int id, ILocation location, boolean vibration,
-			boolean wifi, boolean bluetooth, boolean mobileData, int soundLevel) {
-		super(id, location);
+	public PhoneSettingObject(long id, ILocation location, boolean vibration,
+			boolean wifi, boolean bluetooth, boolean mobileData, int soundLevel, float pDistnace) {
+		super(id, location, pDistnace);
 		this.vibration = vibration;
 		this.wifi = wifi;
 		this.bluetooth = bluetooth;
