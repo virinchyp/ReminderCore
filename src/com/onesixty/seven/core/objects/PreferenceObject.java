@@ -8,10 +8,14 @@ import com.onesixty.seven.core.intefaces.ILocation;
 public class PreferenceObject {
 
 	/** The id. */
-	protected final int id;
+	protected final long id;
 
 	/** The location. */
 	protected ILocation location;
+	
+	/** proximity distance from current location
+	 * to trigger reminder found event */
+	protected float proximityDistance;
 
 	/**
 	 * Instantiates a new user preference object.
@@ -19,9 +23,10 @@ public class PreferenceObject {
 	 * @param theId
 	 *            the the id
 	 */
-	public PreferenceObject(int theId, ILocation theLocation) {
+	public PreferenceObject(long theId, ILocation theLocation, float pDistance) {
 		this.id = theId;
 		this.location = theLocation;
+		this.proximityDistance = pDistance;
 	}
 
 	/**
