@@ -33,7 +33,7 @@ public class Core implements ICore {
 	private ILocation currentLocation;
 
 	/** The reminder manager. */
-	private IManager userPreferenceManager;
+	private IManager manager;
 
 	/**
 	 * Instantiates a new core.
@@ -41,7 +41,7 @@ public class Core implements ICore {
 	public Core() {
 		savedLocations = new ArrayList<ILocation>();
 		listenerMap = new HashMap<ICore.Event, List<IListener>>();
-		userPreferenceManager = new UserPreferenceManager();
+		manager = new UserPreferenceManager();
 	}
 
 	/*
@@ -65,7 +65,7 @@ public class Core implements ICore {
 	 */
 	@Override
 	public IManager getUserPreferenceManager() {
-		return userPreferenceManager;
+		return manager;
 	}
 
 	/*
