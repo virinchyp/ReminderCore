@@ -1,5 +1,7 @@
 package com.onesixty.seven.core.objects;
 
+import com.onesixty.seven.core.intefaces.ILocation;
+
 /**
  * The Class Reminder.
  */
@@ -8,7 +10,7 @@ public class ReminderObject extends UserPreferenceObject {
 	/** The message. */
 	private String message;
 
-	public ReminderObject(int id, String message, LocationObject location) {
+	public ReminderObject(int id, String message, ILocation location) {
 		super(id, location);
 		this.message = message;
 	}

@@ -1,7 +1,5 @@
 package com.onesixty.seven.core.intefaces;
 
-import com.onesixty.seven.core.objects.LocationObject;
-
 /**
  * The Interface ICore.
  */
@@ -21,7 +19,7 @@ public interface ICore {
 		/**
 		 * When the current location of the device changes.
 		 * 
-		 * Object: LocationObject
+		 * Object: ILocation
 		 */
 		CURRENT_LOCATION_UPDATE,
 
@@ -29,7 +27,7 @@ public interface ICore {
 		 * When the device enters in the radius of a saved location associated
 		 * with a reminder.
 		 * 
-		 * Object: ReminderObject
+		 * Object: UserPreferenceObject
 		 */
 		EVENT_ENTER_LOCATION_RADIUS,
 
@@ -37,7 +35,7 @@ public interface ICore {
 		 * When the device exits the radius of a saved location associated with
 		 * a reminder.
 		 * 
-		 * Object: ReminderObject
+		 * Object: UserPreferenceObject
 		 */
 		EVENT_EXIT_LOCATION_RADIUS
 
@@ -49,7 +47,7 @@ public interface ICore {
 	 * @param newLocation
 	 *            the new current location
 	 */
-	public void setCurrentLocation(LocationObject newLocation);
+	public void setCurrentLocation(ILocation newLocation);
 
 	/**
 	 * Gets the reminder manager.

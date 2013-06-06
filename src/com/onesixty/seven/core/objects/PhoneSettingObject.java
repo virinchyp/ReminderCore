@@ -1,5 +1,7 @@
 package com.onesixty.seven.core.objects;
 
+import com.onesixty.seven.core.intefaces.ILocation;
+
 /**
  * The Class PhoneSettingObject.
  */
@@ -36,9 +38,8 @@ public class PhoneSettingObject extends UserPreferenceObject {
 	 * @param soundLevel
 	 *            the sound level
 	 */
-	public PhoneSettingObject(int id, LocationObject location,
-			boolean vibration, boolean wifi, boolean bluetooth,
-			boolean mobileData, int soundLevel) {
+	public PhoneSettingObject(int id, ILocation location, boolean vibration,
+			boolean wifi, boolean bluetooth, boolean mobileData, int soundLevel) {
 		super(id, location);
 		this.vibration = vibration;
 		this.wifi = wifi;

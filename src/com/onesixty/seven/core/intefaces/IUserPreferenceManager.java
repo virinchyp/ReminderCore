@@ -7,12 +7,12 @@ import com.onesixty.seven.core.objects.ReminderObject;
 import com.onesixty.seven.core.objects.UserPreferenceObject;
 
 /**
- * The Interface IReminderManager.
+ * The Interface IUserPreferenceManager.
  */
 public interface IUserPreferenceManager {
 
 	/**
-	 * The Enum ReminderType.
+	 * The Enum UserPreferenceType.
 	 */
 	public static enum UserPreferenceType {
 
@@ -24,64 +24,64 @@ public interface IUserPreferenceManager {
 	}
 
 	/**
-	 * Adds a reminder.
+	 * Adds a user preference.
 	 * 
 	 * @param item
-	 *            the Reminder.
-	 * @return the reminder id.
+	 *            the user preference.
+	 * @return the user preference id.
 	 */
 	public int addPreference(UserPreferenceObject item);
 
 	/**
-	 * Modify a reminder with a given ID.
+	 * Modify a user preference with a given ID.
 	 * 
 	 * @param id
-	 *            the ID of the reminder to modify.
+	 *            the ID of the user preference to modify.
 	 * @param item
-	 *            the new reminder.
-	 * @return true if reminder is modified, false otherwise.
+	 *            the new user preference.
+	 * @return true if user preference is modified, false otherwise.
 	 */
 	public boolean modifyPreference(int id, UserPreferenceObject item);
 
 	/**
-	 * Delete a reminder with a given ID.
+	 * Delete a user preference with a given ID.
 	 * 
 	 * @param id
-	 *            the ID of the reminder to delete.
-	 * @return true if reminder is deleted, false otherwise.
+	 *            the ID of the user preference to delete.
+	 * @return true if user preference is deleted, false otherwise.
 	 */
 	public boolean deletePreference(int id);
 
 	/**
-	 * Returns the reminder with a given ID.
+	 * Returns the user preference with a given ID.
 	 * 
 	 * @param id
-	 *            the ID of the reminder to return.
-	 * @return the reminder.
+	 *            the ID of the user preference to return.
+	 * @return the user preference.
 	 */
 	public UserPreferenceObject getPreference(int id);
 
 	/**
-	 * Gets the reminders for a type.
+	 * Gets the user preference for a type.
 	 * 
 	 * @param type
-	 *            the type of the reminder to get.
-	 * @return the associated reminders for the type
+	 *            the type of the user preference to get.
+	 * @return the associated user preference for the type
 	 */
 	public List<UserPreferenceObject> getPreferencesForType(
 			UserPreferenceType type);
 
 	/**
-	 * Returns all the reminders currently stored.
+	 * Returns all the user preferences currently stored.
 	 * 
-	 * @return the <code>List</code> containing all the reminders
+	 * @return the <code>List</code> containing all the user preference
 	 */
 	public List<UserPreferenceObject> getAllPreferences();
 
 	/**
-	 * Gets the all reminders.
+	 * Gets the all user preferences.
 	 * 
-	 * @return the all reminders
+	 * @return the all user preference
 	 */
 	public List<ReminderObject> getAllReminders();
 
@@ -93,13 +93,13 @@ public interface IUserPreferenceManager {
 	public List<PhoneSettingObject> getAllPhoneSettingPreferences();
 
 	/**
-	 * Returns true if and only if reminder with this ID is present, false
-	 * otherwise.
+	 * Returns true if and only if user preference with this ID is present,
+	 * false otherwise.
 	 * 
 	 * @param id
-	 *            the ID of the reminder to search.
-	 * @return true if and only if reminder with this ID is present, false
-	 *         otherwise.
+	 *            the ID of the user preference to search.
+	 * @return true if and only if user preference with this ID is present,
+	 *         false otherwise.
 	 */
 	public boolean containsPreference(int id);
 }

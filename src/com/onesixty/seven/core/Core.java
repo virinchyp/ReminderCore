@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.onesixty.seven.core.intefaces.ICore;
+import com.onesixty.seven.core.intefaces.ILocation;
 import com.onesixty.seven.core.intefaces.IUserPreferenceManager;
-import com.onesixty.seven.core.objects.LocationObject;
 
 /**
  * This class is the only entry point for the platform to the core. The core is
@@ -21,16 +21,16 @@ import com.onesixty.seven.core.objects.LocationObject;
 public class Core implements ICore {
 
 	/** The locations. */
-	private List<LocationObject> savedLocations;
+	private List<ILocation> savedLocations;
 
 	/** The listener map. */
 	private Map<ICore.Event, List<IListener>> listenerMap;
 
 	/** The last location. */
-	private LocationObject lastLocation;
+	private ILocation lastLocation;
 
 	/** The current location. */
-	private LocationObject currentLocation;
+	private ILocation currentLocation;
 
 	/** The reminder manager. */
 	private IUserPreferenceManager userPreferenceManager;
@@ -52,7 +52,7 @@ public class Core implements ICore {
 	 * .seven.core.objects.LocationObject)
 	 */
 	@Override
-	public void setCurrentLocation(LocationObject newLocation) {
+	public void setCurrentLocation(ILocation newLocation) {
 		lastLocation = currentLocation;
 		currentLocation = newLocation;
 		// TODO getProximityLocationFor(newLocation);
@@ -133,7 +133,7 @@ public class Core implements ICore {
 	 *            the location
 	 * @return the proximity location for
 	 */
-	private LocationObject getProximityLocationFor(LocationObject location) {
+	private ILocation getProximityLocationFor(ILocation location) {
 		// TODO
 		return null;
 	}

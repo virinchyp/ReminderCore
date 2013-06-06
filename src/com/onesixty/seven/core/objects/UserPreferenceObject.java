@@ -1,5 +1,7 @@
 package com.onesixty.seven.core.objects;
 
+import com.onesixty.seven.core.intefaces.ILocation;
+
 /**
  * The Class UserPreferenceObject.
  */
@@ -9,7 +11,7 @@ public class UserPreferenceObject {
 	protected final int id;
 
 	/** The location. */
-	protected LocationObject location;
+	protected ILocation location;
 
 	/**
 	 * Instantiates a new user preference object.
@@ -17,7 +19,7 @@ public class UserPreferenceObject {
 	 * @param theId
 	 *            the the id
 	 */
-	public UserPreferenceObject(int theId, LocationObject theLocation) {
+	public UserPreferenceObject(int theId, ILocation theLocation) {
 		this.id = theId;
 		this.location = theLocation;
 	}
@@ -36,7 +38,7 @@ public class UserPreferenceObject {
 	 * 
 	 * @return the location
 	 */
-	public LocationObject getLocation() {
+	public ILocation getLocation() {
 		return location;
 	}
 
@@ -46,7 +48,7 @@ public class UserPreferenceObject {
 	 * @param location
 	 *            the new location
 	 */
-	public void setLocation(LocationObject location) {
+	public void setLocation(ILocation location) {
 		this.location = location;
 	}
 }
