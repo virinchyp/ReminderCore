@@ -2,22 +2,24 @@ package com.onesixty.seven.core.intefaces;
 
 import java.util.List;
 
+import com.onesixty.seven.core.objects.PhoneSettingObject;
 import com.onesixty.seven.core.objects.ReminderObject;
+import com.onesixty.seven.core.objects.UserPreferenceObject;
 
 /**
  * The Interface IReminderManager.
  */
-public interface IReminderManager {
+public interface IUserPreferenceManager {
 
 	/**
 	 * The Enum ReminderType.
 	 */
-	public static enum ReminderType {
+	public static enum UserPreferenceType {
 
-		/** Reminder set for entering a location. */
+		/** User Preference set for entering a location. */
 		ENTER_LOCATION,
 
-		/** Reminder set for exiting a location. */
+		/** User Preference set for exiting a location. */
 		EXIT_LOCATION
 	}
 
@@ -28,7 +30,7 @@ public interface IReminderManager {
 	 *            the Reminder.
 	 * @return the reminder id.
 	 */
-	public int addReminder(ReminderObject item);
+	public int addPreference(UserPreferenceObject item);
 
 	/**
 	 * Modify a reminder with a given ID.
@@ -39,7 +41,7 @@ public interface IReminderManager {
 	 *            the new reminder.
 	 * @return true if reminder is modified, false otherwise.
 	 */
-	public boolean modifyReminder(int id, ReminderObject item);
+	public boolean modifyPreference(int id, UserPreferenceObject item);
 
 	/**
 	 * Delete a reminder with a given ID.
@@ -48,7 +50,7 @@ public interface IReminderManager {
 	 *            the ID of the reminder to delete.
 	 * @return true if reminder is deleted, false otherwise.
 	 */
-	public boolean deleteReminder(int id);
+	public boolean deletePreference(int id);
 
 	/**
 	 * Returns the reminder with a given ID.
@@ -57,7 +59,7 @@ public interface IReminderManager {
 	 *            the ID of the reminder to return.
 	 * @return the reminder.
 	 */
-	public ReminderObject getReminder(int id);
+	public UserPreferenceObject getPreference(int id);
 
 	/**
 	 * Gets the reminders for a type.
@@ -66,14 +68,29 @@ public interface IReminderManager {
 	 *            the type of the reminder to get.
 	 * @return the associated reminders for the type
 	 */
-	public List<ReminderObject> getRemindersForType(ReminderType type);
+	public List<UserPreferenceObject> getPreferencesForType(
+			UserPreferenceType type);
 
 	/**
 	 * Returns all the reminders currently stored.
 	 * 
 	 * @return the <code>List</code> containing all the reminders
 	 */
+	public List<UserPreferenceObject> getAllPreferences();
+
+	/**
+	 * Gets the all reminders.
+	 * 
+	 * @return the all reminders
+	 */
 	public List<ReminderObject> getAllReminders();
+
+	/**
+	 * Gets the all phone setting preferences.
+	 * 
+	 * @return the all phone setting preferences
+	 */
+	public List<PhoneSettingObject> getAllPhoneSettingPreferences();
 
 	/**
 	 * Returns true if and only if reminder with this ID is present, false
@@ -84,5 +101,5 @@ public interface IReminderManager {
 	 * @return true if and only if reminder with this ID is present, false
 	 *         otherwise.
 	 */
-	public boolean containsReminder(int id);
+	public boolean containsPreference(int id);
 }

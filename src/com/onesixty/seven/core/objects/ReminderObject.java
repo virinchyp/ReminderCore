@@ -3,34 +3,14 @@ package com.onesixty.seven.core.objects;
 /**
  * The Class Reminder.
  */
-public class ReminderObject {
-
-	/** The id. */
-	private int id;
+public class ReminderObject extends UserPreferenceObject {
 
 	/** The message. */
 	private String message;
 
-	/** The location. */
-	private LocationObject location;
-
-	/**
-	 * Gets the id.
-	 * 
-	 * @return the id
-	 */
-	public int getId() {
-		return id;
-	}
-
-	/**
-	 * Sets the id.
-	 * 
-	 * @param id
-	 *            the new id
-	 */
-	public void setId(int id) {
-		this.id = id;
+	public ReminderObject(int id, String message, LocationObject location) {
+		super(id, location);
+		this.message = message;
 	}
 
 	/**
@@ -50,25 +30,6 @@ public class ReminderObject {
 	 */
 	public void setMessage(String message) {
 		this.message = message;
-	}
-
-	/**
-	 * Gets the location.
-	 * 
-	 * @return the location
-	 */
-	public LocationObject getLocation() {
-		return location;
-	}
-
-	/**
-	 * Sets the location.
-	 * 
-	 * @param location
-	 *            the new location
-	 */
-	public void setLocation(LocationObject location) {
-		this.location = location;
 	}
 
 	/*

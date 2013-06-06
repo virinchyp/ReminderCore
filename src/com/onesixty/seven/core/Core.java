@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.onesixty.seven.core.intefaces.ICore;
-import com.onesixty.seven.core.intefaces.IReminderManager;
+import com.onesixty.seven.core.intefaces.IUserPreferenceManager;
 import com.onesixty.seven.core.objects.LocationObject;
 
 /**
@@ -21,7 +21,7 @@ import com.onesixty.seven.core.objects.LocationObject;
 public class Core implements ICore {
 
 	/** The locations. */
-	private List<LocationObject> locations;
+	private List<LocationObject> savedLocations;
 
 	/** The listener map. */
 	private Map<ICore.Event, List<IListener>> listenerMap;
@@ -33,15 +33,15 @@ public class Core implements ICore {
 	private LocationObject currentLocation;
 
 	/** The reminder manager. */
-	private IReminderManager reminderManager;
+	private IUserPreferenceManager reminderManager;
 
 	/**
 	 * Instantiates a new core.
 	 */
 	public Core() {
-		locations = new ArrayList<>();
+		savedLocations = new ArrayList<>();
 		listenerMap = new HashMap<ICore.Event, List<IListener>>();
-		reminderManager = new ReminderManager();
+		reminderManager = new UserPreferenceManager();
 	}
 
 	/*
@@ -64,7 +64,7 @@ public class Core implements ICore {
 	 * @see com.onesixty.seven.core.intefaces.ICore#getReminderManager()
 	 */
 	@Override
-	public IReminderManager getReminderManager() {
+	public IUserPreferenceManager getReminderManager() {
 		return reminderManager;
 	}
 
