@@ -22,6 +22,7 @@ public class Model implements ICore.IListener {
 	{
 		this.storage = new StorageModel();
 		chutiyaCore = new Core(this.storage);
+		this.chutiyaCore.addListener(ICore.Event.EVENT_ENTER_LOCATION_RADIUS, this);
 		this.maxRow = mRow;
 		this.maxCol = mCol;
 	}
@@ -124,7 +125,10 @@ public class Model implements ICore.IListener {
 
 	@Override
 	public void onCoreEvent(Event type, Object data) {
-		// TODO Auto-generated method stub
+		if(type == ICore.Event.EVENT_ENTER_LOCATION_RADIUS)
+		{
+			System.out.println(((Reminder)data).getMessage()); 
+		}
 		
 	}
 
