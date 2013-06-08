@@ -79,8 +79,9 @@ public class Core implements ICore {
 		List<IListener> listeners = listenerMap.get(type);
 		if (listeners == null) {
 			listeners = new ArrayList<IListener>();
-			listeners.add(listener);
 		}
+		listeners.add(listener);
+		listenerMap.put(type, listeners);
 	}
 
 	/*
