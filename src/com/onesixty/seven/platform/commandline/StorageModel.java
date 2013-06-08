@@ -38,8 +38,7 @@ public class StorageModel implements IStorageProvider{
 
 	@Override
 	public Notification getNotification(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.items.get(id);
 	}
 
 	@Override
