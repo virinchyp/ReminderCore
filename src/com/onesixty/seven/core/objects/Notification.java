@@ -55,12 +55,23 @@ public class Notification {
 	 * @param type
 	 *            the type
 	 */
-	protected Notification(final long id, ILocation location, long time,
-			NotificationType type) {
+	protected Notification(final long id, ILocation location) {
 		this.id = id;
 		this.location = location;
+		this.type = Notification.NotificationType.LOCATION_BASED;
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @param location
+	 * @param time
+	 * @param type
+	 */
+	protected Notification(final long id, long time) {
+		this.id = id;
 		this.time = time;
-		this.type = type;
+		this.type = Notification.NotificationType.TIME_BASED;
 	}
 
 	/**

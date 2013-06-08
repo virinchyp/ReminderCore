@@ -13,11 +13,13 @@ public class Model implements ICore.IListener {
 	
 	Core chutiyaCore;
 	int maxRow;
-	int MaxCol;
+	int maxCol;
 	
-	public Model()
+	public Model(int mRow, int mCol)
 	{
 		chutiyaCore = new Core();
+		this.maxRow = mRow;
+		this.maxCol = mCol;
 	}
 	
 	public void start()
@@ -31,12 +33,13 @@ public class Model implements ICore.IListener {
 			System.out.println("2. Update Location");
 			System.out.println("3. Update Time");
 			System.out.println("0. Exit");
-			int option = Integer.parseInt(sc.next());
-			switch(option)
+			choice = Integer.parseInt(sc.next());
+			switch(choice)
 			{
-				case 0: break;
+				case 0: System.out.println("Exiting"); break;
 				case 1 : addReminder(sc); break;
-				case 2 :
+				case 2 : updateLocation(sc);break;
+				case 3 : updateTime(sc);break;
 				default : System.out.println("Invalid choice");break;
 			}
 		}
@@ -61,10 +64,10 @@ public class Model implements ICore.IListener {
 		System.out.println("Enter Location col");
 		int c = Integer.parseInt(sc.next());
 		
-		LocationModel l = new LocationModel(r,c,this.maxRow,this.MaxCol);
+		LocationModel l = new LocationModel(r,c,this.maxRow,this.maxCol);
 		long id = Util.generateId();
 		
-//		Notification item = new Reminder(id, l, id, reminder)
+		Notification item = new Reminder(id, l,reminder);
 		
 	}
 	
@@ -85,6 +88,8 @@ public class Model implements ICore.IListener {
 	
 	public static void main(String[] args)
 	{
+		int gridRows = 0;
+		int gridCols = 0;
 		if(args.length!=2)
 		{
 			System.out.println("Invalid command line arguments");
@@ -92,8 +97,8 @@ public class Model implements ICore.IListener {
 		}
 		try
 		{
-			int gridRows = Integer.parseInt(args[0]);
-			int gridCols = Integer.parseInt(args[1]);
+			gridRows = Integer.parseInt(args[0]);
+			gridCols = Integer.parseInt(args[1]);
 		}
 		catch(Exception e)
 		{
@@ -102,7 +107,8 @@ public class Model implements ICore.IListener {
 			System.exit(0);
 		}
 		
-		
+		Model m = new Model(gridRows,gridCols);
+		m.start();
 		
 	}
 

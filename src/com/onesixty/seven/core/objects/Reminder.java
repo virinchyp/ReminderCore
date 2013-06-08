@@ -9,10 +9,16 @@ public class Reminder extends Notification {
 
 	/** The message. */
 	private String message;
-
-	public Reminder(long id, ILocation location, long time, String message,
-			NotificationType type) {
-		super(id, location, time, type);
+	
+	/** Constructor to make a reminder based on time */
+	public Reminder(long id, long time, String message) {
+		super(id, time);
+		this.message = message;
+	}
+	
+	/** Constructor to make a reminder based on location */
+	public Reminder(long id, ILocation location, String message) {
+		super(id, location);
 		this.message = message;
 	}
 

@@ -23,7 +23,7 @@ public class PhoneSetting extends Notification {
 	private int soundLevel;
 
 	/**
-	 * Instantiates a new phone setting object.
+	 * Instantiates a new phone setting object based on time.
 	 * 
 	 * @param id
 	 *            the id
@@ -38,12 +38,37 @@ public class PhoneSetting extends Notification {
 	 * @param soundLevel
 	 *            the sound level
 	 */
-	public PhoneSetting(long id, ILocation location, long time,
-			NotificationType type, boolean vibration, boolean wifi,
-			boolean bluetooth, boolean mobileData, int soundLevel,
-			float pDistnace, boolean notifyUser) {
+	public PhoneSetting(long id, long time,
+			boolean vibration, boolean wifi, boolean bluetooth,
+			boolean mobileData, int soundLevel, float pDistnace,
+			boolean notifyUser) {
 
-		super(id, location, time, type);
+		super(id, time);
+		this.vibration = vibration;
+		this.wifi = wifi;
+		this.bluetooth = bluetooth;
+		this.mobileData = mobileData;
+		this.soundLevel = soundLevel;
+	}
+	
+	/**
+	 * Constructor to initialize phone setting notification based on location
+	 * @param id
+	 * @param location
+	 * @param vibration
+	 * @param wifi
+	 * @param bluetooth
+	 * @param mobileData
+	 * @param soundLevel
+	 * @param pDistnace
+	 * @param notifyUser
+	 */
+	public PhoneSetting(long id, ILocation location,
+			boolean vibration, boolean wifi, boolean bluetooth,
+			boolean mobileData, int soundLevel, float pDistnace,
+			boolean notifyUser) {
+
+		super(id, location);
 		this.vibration = vibration;
 		this.wifi = wifi;
 		this.bluetooth = bluetooth;
