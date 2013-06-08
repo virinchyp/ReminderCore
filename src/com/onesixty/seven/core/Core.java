@@ -25,7 +25,7 @@ import com.onesixty.seven.core.objects.Reminder;
 public class Core implements ICore {
 
 	/** The locations. */
-	private HashMap<Long,ILocation> savedLocations;
+	private HashMap<Long, ILocation> savedLocations;
 
 	/** The listener map. */
 	private Map<ICore.Event, List<IListener>> listenerMap;
@@ -43,7 +43,7 @@ public class Core implements ICore {
 	 * Instantiates a new core.
 	 */
 	public Core(IStorageProvider platformStorage) {
-		savedLocations = new HashMap<Long,ILocation>();
+		savedLocations = new HashMap<Long, ILocation>();
 		listenerMap = new HashMap<ICore.Event, List<IListener>>();
 		storage = platformStorage;
 	}
@@ -61,8 +61,9 @@ public class Core implements ICore {
 		currentLocation = newLocation;
 		List<Long> id = this.getProximityLocationFor(currentLocation);
 		Iterator<Long> it = id.iterator();
-		while(it.hasNext())
-			this.broadcastEvent(ICore.Event.EVENT_ENTER_LOCATION_RADIUS, this.getNotification(it.next()));
+		while (it.hasNext())
+			this.broadcastEvent(ICore.Event.EVENT_ENTER_LOCATION_RADIUS,
+					this.getNotification(it.next()));
 	}
 
 	/*
@@ -125,61 +126,61 @@ public class Core implements ICore {
 
 	@Override
 	public long addNotification(Notification item) {
-		if(item.getType() == Notification.NotificationType.LOCATION_BASED)
+		if (item.getType() == Notification.NotificationType.LOCATION_BASED)
 			this.savedLocations.put(item.getId(), item.getLocation());
 		return storage.addNotification(item);
 	}
 
 	@Override
 	public boolean modifyNotification(long id, Notification item) {
-		return modifyNotification(id, item);
+		return storage.modifyNotification(id, item);
 	}
 
 	@Override
 	public boolean deleteNotification(long id) {
-		return deleteNotification(id);
+		return storage.deleteNotification(id);
 	}
 
 	@Override
 	public Notification getNotification(long id) {
-		return getNotification(id);
+		return storage.getNotification(id);
 	}
 
 	@Override
 	public List<Notification> getAllNotifications() {
-		return getAllNotifications();
+		return storage.getAllNotifications();
 	}
 
 	@Override
 	public List<Reminder> getAllReminderNotifications() {
-		return getAllReminderNotifications();
+		return storage.getAllReminderNotifications();
 	}
 
 	@Override
 	public List<PhoneSetting> getAllPhoneSettingNotifications() {
-		return getAllPhoneSettingNotifications();
+		return storage.getAllPhoneSettingNotifications();
 	}
 
 	@Override
 	public boolean containsNotification(long id) {
-		return containsNotification(id);
+		return storage.containsNotification(id);
 	}
 
 	/**
-	 * This function is used to get list of notifications id
-	 * if the given location is under proximity of any of the saved locations
+	 * This function is used to get list of notifications id if the given
+	 * location is under proximity of any of the saved locations
+	 * 
 	 * @param location
 	 * @return List of notification id
 	 */
 	private List<Long> getProximityLocationFor(ILocation location) {
 		List<Long> ids = new ArrayList<Long>();
 		Iterator<Long> it = this.savedLocations.keySet().iterator();
-		while(it.hasNext())
-		{
+		while (it.hasNext()) {
 			long id = it.next();
 			ILocation loc = this.savedLocations.get(id);
 			float distance = loc.distanceTo(location);
-			if(distance <= loc.getRadius())
+			if (distance <= loc.getRadius())
 				ids.add(id);
 		}
 		return ids;
