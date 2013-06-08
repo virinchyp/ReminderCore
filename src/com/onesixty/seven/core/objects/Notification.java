@@ -52,6 +52,8 @@ public class Notification {
 	 *            the location
 	 * @param time
 	 *            the time
+	 * @param type
+	 *            the type
 	 */
 	protected Notification(final long id, ILocation location, long time,
 			NotificationType type) {
@@ -107,4 +109,24 @@ public class Notification {
 	public void setTime(long time) {
 		this.time = time;
 	}
+
+	/**
+	 * Gets the NotificationType.
+	 * 
+	 * @return the type
+	 */
+	public NotificationType getType() {
+		return type;
+	}
+
+	/**
+	 * Sets the NotificationType.
+	 * 
+	 * @param type
+	 *            the new type
+	 */
+	public void setType(NotificationType type) {
+		this.type = type;
+	}
+
 }
