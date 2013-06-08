@@ -5,11 +5,15 @@ import java.util.Scanner;
 import com.onesixty.seven.core.Core;
 import com.onesixty.seven.core.intefaces.ICore;
 import com.onesixty.seven.core.intefaces.ICore.Event;
+import com.onesixty.seven.core.objects.Notification;
+import com.onesixty.seven.core.objects.Reminder;
 import com.onesixty.seven.core.util.Util;
 
 public class Model implements ICore.IListener {
 	
 	Core chutiyaCore;
+	int maxRow;
+	int MaxCol;
 	
 	public Model()
 	{
@@ -44,7 +48,7 @@ public class Model implements ICore.IListener {
 		System.out.println("Enter 1. Location based, 2. Time based");
 		int ch = Integer.parseInt(sc.next());
 		if(ch==1) addLocationReminder(sc);
-		else if (ch ==2) addTimeBasedReminder(sc);
+		//else if (ch ==2) addTimeBasedReminder(sc);
 		else System.out.println("Invalid choice");
 	}
 	
@@ -57,9 +61,20 @@ public class Model implements ICore.IListener {
 		System.out.println("Enter Location col");
 		int c = Integer.parseInt(sc.next());
 		
-		LocationModel l = new LocationModel(r,c);
+		LocationModel l = new LocationModel(r,c,this.maxRow,this.MaxCol);
 		long id = Util.generateId();
 		
+//		Notification item = new Reminder(id, l, id, reminder)
+		
+	}
+	
+	public void updateLocation(Scanner sc)
+	{
+		
+	}
+	
+	public void updateTime(Scanner sc)
+	{
 		
 	}
 	

@@ -20,26 +20,21 @@ public class LocationModel implements ILocation {
 
 	@Override
 	public float distanceTo(ILocation location) {
+		return (float) Math.sqrt(Math.pow(location.getLatitude()-this.row,2) + Math.pow(location.getLongitude()-this.col,2));
 		
-		return 0;
 	}
 
-	@Override
-	public float getAltitude() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
+	
 	@Override
 	public double getLatitude() {
 		// TODO Auto-generated method stub
-		return 0;
+		return (double)this.row;
 	}
 
 	@Override
 	public double getLongitude() {
 		// TODO Auto-generated method stub
-		return 0;
+		return (double)this.col;
 	}
 
 }
