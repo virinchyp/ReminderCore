@@ -2,103 +2,103 @@ package com.onesixty.seven.core.intefaces;
 
 import java.util.List;
 
-import com.onesixty.seven.core.objects.PhoneSettingObject;
-import com.onesixty.seven.core.objects.PreferenceObject;
-import com.onesixty.seven.core.objects.ReminderObject;
+import com.onesixty.seven.core.objects.Notification;
+import com.onesixty.seven.core.objects.PhoneSetting;
+import com.onesixty.seven.core.objects.Reminder;
 
 /**
- * The Interface IUserPreferenceManager.
+ * The Interface IManager.
  */
 public interface IManager {
 
 	/**
-	 * The Enum UserPreferenceType.
+	 * The Enum NotificationType.
 	 */
-	public static enum PreferenceType {
+	public static enum NotificationType {
 
-		/** User Preference set for entering a location. */
+		/** Notification set for entering a location. */
 		ENTER_LOCATION,
 
-		/** User Preference set for exiting a location. */
+		/** Notification set for exiting a location. */
 		EXIT_LOCATION
 	}
 
 	/**
-	 * Adds a user preference.
+	 * Adds a notification.
 	 * 
 	 * @param item
-	 *            the user preference.
-	 * @return the user preference id.
+	 *            the notification.
+	 * @return the notification id.
 	 */
-	public int addPreference(PreferenceObject item);
+	public long addNotification(Notification item);
 
 	/**
-	 * Modify a user preference with a given ID.
+	 * Modify a notification with a given ID.
 	 * 
 	 * @param id
-	 *            the ID of the user preference to modify.
+	 *            the ID of the notification to modify.
 	 * @param item
-	 *            the new user preference.
-	 * @return true if user preference is modified, false otherwise.
+	 *            the new notification.
+	 * @return true if notification is modified, false otherwise.
 	 */
-	public boolean modifyPreference(int id, PreferenceObject item);
+	public boolean modifyNotification(int id, Notification item);
 
 	/**
-	 * Delete a user preference with a given ID.
+	 * Delete a notification with a given ID.
 	 * 
 	 * @param id
-	 *            the ID of the user preference to delete.
-	 * @return true if user preference is deleted, false otherwise.
+	 *            the ID of the notification to delete.
+	 * @return true if notification is deleted, false otherwise.
 	 */
-	public boolean deletePreference(int id);
+	public boolean deleteNotification(long id);
 
 	/**
-	 * Returns the user preference with a given ID.
+	 * Returns the notification with a given ID.
 	 * 
 	 * @param id
-	 *            the ID of the user preference to return.
-	 * @return the user preference.
+	 *            the ID of the notification to return.
+	 * @return the notification.
 	 */
-	public PreferenceObject getPreference(int id);
+	public Notification getNotification(long id);
 
 	/**
-	 * Gets the user preference for a type.
+	 * Gets the notification for a type.
 	 * 
 	 * @param type
-	 *            the type of the user preference to get.
-	 * @return the associated user preference for the type
+	 *            the type of the notification to get.
+	 * @return the associated notification for the type
 	 */
-	public List<PreferenceObject> getPreferencesForType(PreferenceType type);
+	public List<Notification> getNotificationsForType(NotificationType type);
 
 	/**
-	 * Returns all the user preferences currently stored.
+	 * Returns all the notifications currently stored.
 	 * 
-	 * @return the <code>List</code> containing all the user preference
+	 * @return the <code>List</code> containing all the notification
 	 */
-	public List<PreferenceObject> getAllPreferences();
+	public List<Notification> getAllNotifications();
 
 	/**
 	 * Gets the all reminders currently stored.
 	 * 
 	 * @return the all reminders
 	 */
-	public List<ReminderObject> getAllReminders();
+	public List<Reminder> getAllReminderNotifications();
 
 	/**
-	 * Gets the all phone setting preferences.
+	 * Gets the all phone setting notifications.
 	 * 
-	 * @return the all phone setting preferences
+	 * @return the all phone setting notifications
 	 */
-	public List<PhoneSettingObject> getAllPhoneSettingPreferences();
+	public List<PhoneSetting> getAllPhoneSettingNotifications();
 
 	/**
-	 * Returns true if and only if user preference with this ID is present,
-	 * false otherwise.
+	 * Returns true if and only if notification with this ID is present, false
+	 * otherwise.
 	 * 
 	 * @param id
-	 *            the ID of the user preference to search.
-	 * @return true if and only if user preference with this ID is present,
-	 *         false otherwise.
+	 *            the ID of the notification to search.
+	 * @return true if and only if notification with this ID is present, false
+	 *         otherwise.
 	 */
-	public boolean containsPreference(int id);
+	public boolean containsNotification(long id);
 }

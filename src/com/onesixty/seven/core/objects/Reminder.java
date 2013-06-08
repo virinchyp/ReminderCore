@@ -5,14 +5,13 @@ import com.onesixty.seven.core.intefaces.ILocation;
 /**
  * The Class Reminder.
  */
-public class ReminderObject extends PreferenceObject {
+public class Reminder extends Notification {
 
 	/** The message. */
 	private String message;
 
-	public ReminderObject(long id, String message, ILocation location,
-			float pDistnace, boolean notifyUser) {
-		super(id, location, pDistnace, notifyUser);
+	public Reminder(long id, ILocation location, long time, String message) {
+		super(id, location, time);
 		this.message = message;
 	}
 
@@ -53,7 +52,7 @@ public class ReminderObject extends PreferenceObject {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		return (obj instanceof ReminderObject) ? this.id == ((ReminderObject) obj).id
+		return (obj instanceof Reminder) ? this.id == ((Reminder) obj).id
 				: false;
 	}
 

@@ -3,8 +3,8 @@ package com.onesixty.seven.core;
 import java.util.List;
 
 import com.onesixty.seven.core.intefaces.IManager;
-import com.onesixty.seven.core.objects.PhoneSettingObject;
-import com.onesixty.seven.core.objects.ReminderObject;
+import com.onesixty.seven.core.objects.PhoneSetting;
+import com.onesixty.seven.core.objects.Reminder;
 import com.onesixty.seven.core.objects.PreferenceObject;
 
 /**
@@ -55,13 +55,13 @@ class UserPreferenceManager implements IManager {
 	}
 
 	@Override
-	public List<ReminderObject> getAllReminders() {
+	public List<Reminder> getAllReminders() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<PhoneSettingObject> getAllPhoneSettingPreferences() {
+	public List<PhoneSetting> getAllPhoneSettingPreferences() {
 		// TODO Auto-generated method stub
 		return null;
 	}

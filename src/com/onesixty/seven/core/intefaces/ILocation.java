@@ -16,13 +16,6 @@ public interface ILocation {
 	float distanceTo(ILocation location);
 
 	/**
-	 * Gets the altitude.
-	 * 
-	 * @return the altitude
-	 */
-	float getAltitude();
-
-	/**
 	 * Gets the latitude.
 	 * 
 	 * @return the latitude
