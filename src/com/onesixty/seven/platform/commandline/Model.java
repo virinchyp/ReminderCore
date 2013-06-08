@@ -64,13 +64,13 @@ public class Model implements ICore.IListener {
 	public void addLocationReminder(Scanner sc)
 	{
 		System.out.println("Enter Reminder");
-		String reminder = sc.nextLine();
+		String reminder = sc.next();
 		System.out.println("Enter Location row");
 		int r = Integer.parseInt(sc.next());
 		System.out.println("Enter Location col");
 		int c = Integer.parseInt(sc.next());
 		
-		ILocation l = new LocationModel(r,c,this.maxRow,this.maxCol,1);
+		ILocation l = new LocationModel(r,c,this.maxRow,this.maxCol,5);
 		long id = Util.generateId();
 		
 		Notification item = new Reminder(id, l,reminder);
