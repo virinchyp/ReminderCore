@@ -107,5 +107,4 @@ public interface ICore {
 		 */
 		public void onCoreEvent(Event type, Object data);
 	}
-
 }

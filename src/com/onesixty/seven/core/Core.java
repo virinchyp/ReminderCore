@@ -41,7 +41,7 @@ public class Core implements ICore {
 	public Core() {
 		savedLocations = new ArrayList<ILocation>();
 		listenerMap = new HashMap<ICore.Event, List<IListener>>();
-		manager = new UserPreferenceManager();
+		manager = new Manager();
 	}
 
 	/*

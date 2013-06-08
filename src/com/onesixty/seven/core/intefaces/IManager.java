@@ -12,18 +12,6 @@ import com.onesixty.seven.core.objects.Reminder;
 public interface IManager {
 
 	/**
-	 * The Enum NotificationType.
-	 */
-	public static enum NotificationType {
-
-		/** Notification set for entering a location. */
-		ENTER_LOCATION,
-
-		/** Notification set for exiting a location. */
-		EXIT_LOCATION
-	}
-
-	/**
 	 * Adds a notification.
 	 * 
 	 * @param item
@@ -41,7 +29,7 @@ public interface IManager {
 	 *            the new notification.
 	 * @return true if notification is modified, false otherwise.
 	 */
-	public boolean modifyNotification(int id, Notification item);
+	public boolean modifyNotification(long id, Notification item);
 
 	/**
 	 * Delete a notification with a given ID.
@@ -60,15 +48,6 @@ public interface IManager {
 	 * @return the notification.
 	 */
 	public Notification getNotification(long id);
-
-	/**
-	 * Gets the notification for a type.
-	 * 
-	 * @param type
-	 *            the type of the notification to get.
-	 * @return the associated notification for the type
-	 */
-	public List<Notification> getNotificationsForType(NotificationType type);
 
 	/**
 	 * Returns all the notifications currently stored.

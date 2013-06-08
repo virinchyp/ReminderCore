@@ -17,10 +17,38 @@ public class Notification {
 	protected long time;
 
 	/**
+	 * The Enum NotificationType.
+	 */
+	public static enum LocationType {
+
+		/** Notification set for entering a location. */
+		ENTER_LOCATION,
+
+		/** Notification set for exiting a location. */
+		EXIT_LOCATION
+	}
+
+	/**
+	 * The Enum NotificationType.
+	 */
+	public static enum NotificationType {
+
+		/** The time based notiation. */
+		TIME_BASED,
+
+		/** The location based notiation. */
+		LOCATION_BASED
+	}
+
+	/**
 	 * Instantiates a new notification.
 	 * 
 	 * @param id
 	 *            the id
+	 * @param location
+	 *            the location
+	 * @param time
+	 *            the time
 	 */
 	protected Notification(final long id, ILocation location, long time) {
 		this.id = id;

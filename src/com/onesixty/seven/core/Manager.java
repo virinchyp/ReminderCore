@@ -3,9 +3,9 @@ package com.onesixty.seven.core;
 import java.util.List;
 
 import com.onesixty.seven.core.intefaces.IManager;
+import com.onesixty.seven.core.objects.Notification;
 import com.onesixty.seven.core.objects.PhoneSetting;
 import com.onesixty.seven.core.objects.Reminder;
-import com.onesixty.seven.core.objects.PreferenceObject;
 
 /**
  * 
@@ -15,61 +15,53 @@ import com.onesixty.seven.core.objects.PreferenceObject;
  * @author Anupam
  * 
  */
-class UserPreferenceManager implements IManager {
+class Manager implements IManager {
 
 	@Override
-	public int addPreference(PreferenceObject item) {
+	public long addNotification(Notification item) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public boolean modifyPreference(int id, PreferenceObject item) {
+	public boolean modifyNotification(long id, Notification item) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean deletePreference(int id) {
+	public boolean deleteNotification(long id) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public PreferenceObject getPreference(int id) {
+	public Notification getNotification(long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<PreferenceObject> getPreferencesForType(
-			PreferenceType type) {
+	public List<Notification> getAllNotifications() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<PreferenceObject> getAllPreferences() {
+	public List<Reminder> getAllReminderNotifications() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Reminder> getAllReminders() {
+	public List<PhoneSetting> getAllPhoneSettingNotifications() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<PhoneSetting> getAllPhoneSettingPreferences() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean containsPreference(int id) {
+	public boolean containsNotification(long id) {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
 }
