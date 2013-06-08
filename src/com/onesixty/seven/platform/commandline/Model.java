@@ -8,6 +8,7 @@ import com.onesixty.seven.core.intefaces.ICore.Event;
 import com.onesixty.seven.core.intefaces.ILocation;
 import com.onesixty.seven.core.intefaces.IStorageProvider;
 import com.onesixty.seven.core.objects.Notification;
+import com.onesixty.seven.core.objects.Notification.LocationType;
 import com.onesixty.seven.core.objects.Reminder;
 import com.onesixty.seven.core.util.Util;
 
@@ -76,11 +77,12 @@ public class Model implements ICore.IListener {
 		int r = Integer.parseInt(sc.next());
 		System.out.println("Enter Location col");
 		int c = Integer.parseInt(sc.next());
-		
+
 		ILocation l = new LocationModel(r, c, this.maxRow, this.maxCol, 5);
 		long id = Util.generateId();
 
-		Notification item = new Reminder(id, l, reminder);
+		Notification item = new Reminder(id, l, LocationType.ENTER_LOCATION,
+				reminder);
 		this.chutiyaCore.addNotification(item);
 	}
 

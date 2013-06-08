@@ -27,6 +27,10 @@ public class PhoneSetting extends Notification {
 	 * 
 	 * @param id
 	 *            the id
+	 * @param time
+	 *            the time
+	 * @param locationType
+	 *            the location type
 	 * @param vibration
 	 *            the vibration
 	 * @param wifi
@@ -37,38 +41,54 @@ public class PhoneSetting extends Notification {
 	 *            the mobile data
 	 * @param soundLevel
 	 *            the sound level
+	 * @param pDistnace
+	 *            the distnace
+	 * @param notifyUser
+	 *            the notify user
 	 */
-	public PhoneSetting(long id, long time,
+	public PhoneSetting(long id, long time, LocationType locationType,
 			boolean vibration, boolean wifi, boolean bluetooth,
 			boolean mobileData, int soundLevel, float pDistnace,
 			boolean notifyUser) {
 
-		super(id, time);
+		super(id, time, locationType);
 		this.vibration = vibration;
 		this.wifi = wifi;
 		this.bluetooth = bluetooth;
 		this.mobileData = mobileData;
 		this.soundLevel = soundLevel;
 	}
-	
+
 	/**
-	 * Constructor to initialize phone setting notification based on location
+	 * Constructor to initialize phone setting notification based on location.
+	 * 
 	 * @param id
+	 *            the id
 	 * @param location
+	 *            the location
+	 * @param locationType
+	 *            the location type
 	 * @param vibration
+	 *            the vibration
 	 * @param wifi
+	 *            the wifi
 	 * @param bluetooth
+	 *            the bluetooth
 	 * @param mobileData
+	 *            the mobile data
 	 * @param soundLevel
+	 *            the sound level
 	 * @param pDistnace
+	 *            the distnace
 	 * @param notifyUser
+	 *            the notify user
 	 */
-	public PhoneSetting(long id, ILocation location,
+	public PhoneSetting(long id, ILocation location, LocationType locationType,
 			boolean vibration, boolean wifi, boolean bluetooth,
 			boolean mobileData, int soundLevel, float pDistnace,
 			boolean notifyUser) {
 
-		super(id, location);
+		super(id, location, locationType);
 		this.vibration = vibration;
 		this.wifi = wifi;
 		this.bluetooth = bluetooth;

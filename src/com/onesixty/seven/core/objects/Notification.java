@@ -17,8 +17,11 @@ public class Notification {
 	protected long time;
 
 	/** The notification type. */
-	protected NotificationType type;
-	
+	protected NotificationType notificationType;
+
+	/** The location type */
+	protected LocationType locationType;
+
 	/** proximity for location */
 	protected float radius;
 
@@ -54,10 +57,11 @@ public class Notification {
 	 * @param location
 	 *            the location
 	 */
-	protected Notification(final long id, ILocation location) {
+	protected Notification(final long id, ILocation location,
+			LocationType locationType) {
 		this.id = id;
 		this.location = location;
-		this.type = Notification.NotificationType.LOCATION_BASED;
+		this.notificationType = Notification.NotificationType.LOCATION_BASED;
 	}
 
 	/**
@@ -68,10 +72,10 @@ public class Notification {
 	 * @param time
 	 *            the time
 	 */
-	protected Notification(final long id, long time) {
+	protected Notification(final long id, long time, LocationType locationType) {
 		this.id = id;
 		this.time = time;
-		this.type = Notification.NotificationType.TIME_BASED;
+		this.notificationType = Notification.NotificationType.TIME_BASED;
 	}
 
 	/**
@@ -127,7 +131,7 @@ public class Notification {
 	 * @return the type
 	 */
 	public NotificationType getType() {
-		return type;
+		return notificationType;
 	}
 
 	/**
@@ -137,7 +141,7 @@ public class Notification {
 	 *            the new type
 	 */
 	public void setType(NotificationType type) {
-		this.type = type;
+		this.notificationType = type;
 	}
 
 }

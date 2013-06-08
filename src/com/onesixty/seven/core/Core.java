@@ -61,9 +61,10 @@ public class Core implements ICore {
 		currentLocation = newLocation;
 		List<Long> id = this.getProximityLocationFor(currentLocation);
 		Iterator<Long> it = id.iterator();
-		while (it.hasNext())
+		while (it.hasNext()) {
 			this.broadcastEvent(ICore.Event.EVENT_ENTER_LOCATION_RADIUS,
 					this.getNotification(it.next()));
+		}
 	}
 
 	/*
@@ -181,8 +182,9 @@ public class Core implements ICore {
 			long id = it.next();
 			ILocation loc = this.savedLocations.get(id);
 			float distance = loc.distanceTo(location);
-			if (distance <= loc.getRadius())
+			if (distance <= loc.getRadius()) {
 				ids.add(id);
+			}
 		}
 		return ids;
 	}
