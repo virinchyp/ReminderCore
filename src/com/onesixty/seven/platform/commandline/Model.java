@@ -63,7 +63,7 @@ public class Model implements ICore.IListener {
 	public void addLocationReminder(Scanner sc)
 	{
 		System.out.println("Enter Reminder");
-		String reminder = sc.next();
+		String reminder = sc.nextLine();
 		System.out.println("Enter Location row");
 		int r = Integer.parseInt(sc.next());
 		System.out.println("Enter Location col");
