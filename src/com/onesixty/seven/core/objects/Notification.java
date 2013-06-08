@@ -16,6 +16,9 @@ public class Notification {
 	/** The time. */
 	protected long time;
 
+	/** The notification type. */
+	protected NotificationType type;
+
 	/**
 	 * The Enum NotificationType.
 	 */
@@ -50,10 +53,12 @@ public class Notification {
 	 * @param time
 	 *            the time
 	 */
-	protected Notification(final long id, ILocation location, long time) {
+	protected Notification(final long id, ILocation location, long time,
+			NotificationType type) {
 		this.id = id;
 		this.location = location;
 		this.time = time;
+		this.type = type;
 	}
 
 	/**

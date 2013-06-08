@@ -10,8 +10,9 @@ public class Reminder extends Notification {
 	/** The message. */
 	private String message;
 
-	public Reminder(long id, ILocation location, long time, String message) {
-		super(id, location, time);
+	public Reminder(long id, ILocation location, long time, String message,
+			NotificationType type) {
+		super(id, location, time, type);
 		this.message = message;
 	}
 

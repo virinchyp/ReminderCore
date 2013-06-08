@@ -39,11 +39,11 @@ public class PhoneSetting extends Notification {
 	 *            the sound level
 	 */
 	public PhoneSetting(long id, ILocation location, long time,
-			boolean vibration, boolean wifi, boolean bluetooth,
-			boolean mobileData, int soundLevel, float pDistnace,
-			boolean notifyUser) {
+			NotificationType type, boolean vibration, boolean wifi,
+			boolean bluetooth, boolean mobileData, int soundLevel,
+			float pDistnace, boolean notifyUser) {
 
-		super(id, location, time);
+		super(id, location, time, type);
 		this.vibration = vibration;
 		this.wifi = wifi;
 		this.bluetooth = bluetooth;
