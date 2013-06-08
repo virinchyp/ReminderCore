@@ -50,23 +50,20 @@ public class Notification {
 	 *            the id
 	 * @param location
 	 *            the location
-	 * @param time
-	 *            the time
-	 * @param type
-	 *            the type
 	 */
 	protected Notification(final long id, ILocation location) {
 		this.id = id;
 		this.location = location;
 		this.type = Notification.NotificationType.LOCATION_BASED;
 	}
-	
+
 	/**
+	 * Instantiates a new notification.
 	 * 
 	 * @param id
-	 * @param location
+	 *            the id
 	 * @param time
-	 * @param type
+	 *            the time
 	 */
 	protected Notification(final long id, long time) {
 		this.id = id;
