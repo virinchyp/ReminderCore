@@ -18,6 +18,9 @@ public class Notification {
 
 	/** The notification type. */
 	protected NotificationType type;
+	
+	/** proximity for location */
+	protected float radius;
 
 	/**
 	 * The Enum NotificationType.
@@ -36,10 +39,10 @@ public class Notification {
 	 */
 	public static enum NotificationType {
 
-		/** The time based notiation. */
+		/** The time based notification. */
 		TIME_BASED,
 
-		/** The location based notiation. */
+		/** The location based notification. */
 		LOCATION_BASED
 	}
 

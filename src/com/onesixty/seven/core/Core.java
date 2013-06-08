@@ -2,6 +2,7 @@ package com.onesixty.seven.core;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -24,7 +25,7 @@ import com.onesixty.seven.core.objects.Reminder;
 public class Core implements ICore {
 
 	/** The locations. */
-	private List<ILocation> savedLocations;
+	private HashMap<Long,ILocation> savedLocations;
 
 	/** The listener map. */
 	private Map<ICore.Event, List<IListener>> listenerMap;
@@ -42,7 +43,7 @@ public class Core implements ICore {
 	 * Instantiates a new core.
 	 */
 	public Core(IStorageProvider platformStorage) {
-		savedLocations = new ArrayList<ILocation>();
+		savedLocations = new HashMap<Long,ILocation>();
 		listenerMap = new HashMap<ICore.Event, List<IListener>>();
 		storage = platformStorage;
 	}
@@ -58,7 +59,10 @@ public class Core implements ICore {
 	public void setCurrentLocation(ILocation newLocation) {
 		lastLocation = currentLocation;
 		currentLocation = newLocation;
-		// TODO getProximityLocationFor(newLocation);
+		List<Long> id = this.getProximityLocationFor(currentLocation);
+		Iterator<Long> it = id.iterator();
+		while(it.hasNext())
+			this.broadcastEvent(ICore.Event.EVENT_ENTER_LOCATION_RADIUS, this.getNotification(it.next()));
 	}
 
 	/*
@@ -121,6 +125,8 @@ public class Core implements ICore {
 
 	@Override
 	public long addNotification(Notification item) {
+		if(item.getType() == Notification.NotificationType.LOCATION_BASED)
+			this.savedLocations.put(item.getId(), item.getLocation());
 		return storage.addNotification(item);
 	}
 
@@ -160,14 +166,22 @@ public class Core implements ICore {
 	}
 
 	/**
-	 * Gets the proximity location for.
-	 * 
+	 * This function is used to get list of notifications id
+	 * if the given location is under proximity of any of the saved locations
 	 * @param location
-	 *            the location
-	 * @return the proximity location for
+	 * @return List of notification id
 	 */
-	private ILocation getProximityLocationFor(ILocation location) {
-		// TODO
-		return null;
+	private List<Long> getProximityLocationFor(ILocation location) {
+		List<Long> ids = new ArrayList<Long>();
+		Iterator<Long> it = this.savedLocations.keySet().iterator();
+		while(it.hasNext())
+		{
+			long id = it.next();
+			ILocation loc = this.savedLocations.get(id);
+			float distance = loc.distanceTo(location);
+			if(distance <= loc.getRadius())
+				ids.add(id);
+		}
+		return ids;
 	}
 }

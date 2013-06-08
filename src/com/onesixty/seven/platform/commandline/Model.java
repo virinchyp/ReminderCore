@@ -5,19 +5,23 @@ import java.util.Scanner;
 import com.onesixty.seven.core.Core;
 import com.onesixty.seven.core.intefaces.ICore;
 import com.onesixty.seven.core.intefaces.ICore.Event;
+import com.onesixty.seven.core.intefaces.ILocation;
+import com.onesixty.seven.core.intefaces.IStorageProvider;
 import com.onesixty.seven.core.objects.Notification;
 import com.onesixty.seven.core.objects.Reminder;
 import com.onesixty.seven.core.util.Util;
 
 public class Model implements ICore.IListener {
 	
+	IStorageProvider storage;
 	Core chutiyaCore;
 	int maxRow;
 	int maxCol;
 	
 	public Model(int mRow, int mCol)
 	{
-		chutiyaCore = new Core();
+		this.storage = new StorageModel();
+		chutiyaCore = new Core(this.storage);
 		this.maxRow = mRow;
 		this.maxCol = mCol;
 	}
@@ -25,6 +29,7 @@ public class Model implements ICore.IListener {
 	public void start()
 	{
 		Scanner sc = new Scanner(System.in);
+		this.updateLocation(sc);
 		int choice = 7;
 		while(choice != 0)
 		{
@@ -64,16 +69,21 @@ public class Model implements ICore.IListener {
 		System.out.println("Enter Location col");
 		int c = Integer.parseInt(sc.next());
 		
-		LocationModel l = new LocationModel(r,c,this.maxRow,this.maxCol);
+		ILocation l = new LocationModel(r,c,this.maxRow,this.maxCol,1);
 		long id = Util.generateId();
 		
 		Notification item = new Reminder(id, l,reminder);
-		
+		this.chutiyaCore.addNotification(item);
 	}
 	
 	public void updateLocation(Scanner sc)
 	{
-		
+		System.out.println("Enter row:");
+		int r = Integer.parseInt(sc.next());
+		System.out.println("Enter col:");
+		int c = Integer.parseInt(sc.next());
+		ILocation l = new LocationModel(r,c,this.maxRow,this.maxCol, 1);
+		this.chutiyaCore.setCurrentLocation(l);
 	}
 	
 	public void updateTime(Scanner sc)

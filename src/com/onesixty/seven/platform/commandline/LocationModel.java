@@ -6,16 +6,18 @@ public class LocationModel implements ILocation {
 	
 	protected int row;
 	protected int col;
+	protected float radius;
 	
 	protected int MaxRow;
 	protected int MaxCol;
 	
-	public LocationModel(int row, int col,int Mrow, int Mcol)
+	public LocationModel(int row, int col,int Mrow, int Mcol, int r)
 	{
 		this.row = row;
 		this.col = col;
 		this.MaxCol = Mcol;
 		this.MaxRow = Mrow;
+		this.radius = r;
 	}
 
 	@Override
@@ -35,6 +37,12 @@ public class LocationModel implements ILocation {
 	public double getLongitude() {
 		// TODO Auto-generated method stub
 		return (double)this.col;
+	}
+
+	@Override
+	public float getRadius() {
+		// TODO Auto-generated method stub
+		return this.radius;
 	}
 
 }

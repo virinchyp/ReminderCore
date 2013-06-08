@@ -28,4 +28,10 @@ public interface ILocation {
 	 * @return the longitude
 	 */
 	double getLongitude();
+	
+	/**
+	 * Gets the radius with this location
+	 * @return
+	 */
+	float getRadius();
 }
