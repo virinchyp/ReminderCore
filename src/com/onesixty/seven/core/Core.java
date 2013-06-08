@@ -7,7 +7,10 @@ import java.util.Map;
 
 import com.onesixty.seven.core.intefaces.ICore;
 import com.onesixty.seven.core.intefaces.ILocation;
-import com.onesixty.seven.core.intefaces.IManager;
+import com.onesixty.seven.core.intefaces.IStorageProvider;
+import com.onesixty.seven.core.objects.Notification;
+import com.onesixty.seven.core.objects.PhoneSetting;
+import com.onesixty.seven.core.objects.Reminder;
 
 /**
  * This class is the only entry point for the platform to the core. The core is
@@ -33,15 +36,15 @@ public class Core implements ICore {
 	private ILocation currentLocation;
 
 	/** The reminder manager. */
-	private IManager manager;
+	private IStorageProvider storage;
 
 	/**
 	 * Instantiates a new core.
 	 */
-	public Core() {
+	public Core(IStorageProvider platformStorage) {
 		savedLocations = new ArrayList<ILocation>();
 		listenerMap = new HashMap<ICore.Event, List<IListener>>();
-		manager = new Manager();
+		storage = platformStorage;
 	}
 
 	/*
@@ -56,16 +59,6 @@ public class Core implements ICore {
 		lastLocation = currentLocation;
 		currentLocation = newLocation;
 		// TODO getProximityLocationFor(newLocation);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.onesixty.seven.core.intefaces.ICore#getReminderManager()
-	 */
-	@Override
-	public IManager getUserPreferenceManager() {
-		return manager;
 	}
 
 	/*
@@ -124,6 +117,46 @@ public class Core implements ICore {
 				listener.onCoreEvent(type, data);
 			}
 		}
+	}
+
+	@Override
+	public long addNotification(Notification item) {
+		return storage.addNotification(item);
+	}
+
+	@Override
+	public boolean modifyNotification(long id, Notification item) {
+		return modifyNotification(id, item);
+	}
+
+	@Override
+	public boolean deleteNotification(long id) {
+		return deleteNotification(id);
+	}
+
+	@Override
+	public Notification getNotification(long id) {
+		return getNotification(id);
+	}
+
+	@Override
+	public List<Notification> getAllNotifications() {
+		return getAllNotifications();
+	}
+
+	@Override
+	public List<Reminder> getAllReminderNotifications() {
+		return getAllReminderNotifications();
+	}
+
+	@Override
+	public List<PhoneSetting> getAllPhoneSettingNotifications() {
+		return getAllPhoneSettingNotifications();
+	}
+
+	@Override
+	public boolean containsNotification(long id) {
+		return containsNotification(id);
 	}
 
 	/**

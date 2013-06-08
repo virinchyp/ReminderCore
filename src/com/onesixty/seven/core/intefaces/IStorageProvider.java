@@ -9,7 +9,7 @@ import com.onesixty.seven.core.objects.Reminder;
 /**
  * The Interface IManager.
  */
-public interface IManager {
+public interface IStorageProvider {
 
 	/**
 	 * Adds a notification.

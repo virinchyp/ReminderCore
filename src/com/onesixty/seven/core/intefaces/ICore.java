@@ -1,5 +1,11 @@
 package com.onesixty.seven.core.intefaces;
 
+import java.util.List;
+
+import com.onesixty.seven.core.objects.Notification;
+import com.onesixty.seven.core.objects.PhoneSetting;
+import com.onesixty.seven.core.objects.Reminder;
+
 /**
  * The Interface ICore.
  */
@@ -57,13 +63,6 @@ public interface ICore {
 	public void setCurrentLocation(ILocation newLocation);
 
 	/**
-	 * Gets the reminder manager.
-	 * 
-	 * @return the reminder manager
-	 */
-	public IManager getUserPreferenceManager();
-
-	/**
 	 * Adds the listener.
 	 * 
 	 * @param type
@@ -92,6 +91,76 @@ public interface ICore {
 	 *            the data associated with the core event.
 	 */
 	public void broadcastEvent(ICore.Event type, Object data);
+
+	/**
+	 * Adds a notification.
+	 * 
+	 * @param item
+	 *            the notification.
+	 * @return the notification id.
+	 */
+	public long addNotification(Notification item);
+
+	/**
+	 * Modify a notification with a given ID.
+	 * 
+	 * @param id
+	 *            the ID of the notification to modify.
+	 * @param item
+	 *            the new notification.
+	 * @return true if notification is modified, false otherwise.
+	 */
+	public boolean modifyNotification(long id, Notification item);
+
+	/**
+	 * Delete a notification with a given ID.
+	 * 
+	 * @param id
+	 *            the ID of the notification to delete.
+	 * @return true if notification is deleted, false otherwise.
+	 */
+	public boolean deleteNotification(long id);
+
+	/**
+	 * Returns the notification with a given ID.
+	 * 
+	 * @param id
+	 *            the ID of the notification to return.
+	 * @return the notification.
+	 */
+	public Notification getNotification(long id);
+
+	/**
+	 * Returns all the notifications currently stored.
+	 * 
+	 * @return the <code>List</code> containing all the notification
+	 */
+	public List<Notification> getAllNotifications();
+
+	/**
+	 * Gets the all reminders currently stored.
+	 * 
+	 * @return the all reminders
+	 */
+	public List<Reminder> getAllReminderNotifications();
+
+	/**
+	 * Gets the all phone setting notifications.
+	 * 
+	 * @return the all phone setting notifications
+	 */
+	public List<PhoneSetting> getAllPhoneSettingNotifications();
+
+	/**
+	 * Returns true if and only if notification with this ID is present, false
+	 * otherwise.
+	 * 
+	 * @param id
+	 *            the ID of the notification to search.
+	 * @return true if and only if notification with this ID is present, false
+	 *         otherwise.
+	 */
+	public boolean containsNotification(long id);
 
 	/**
 	 * The listener interface for receiving events. The class that is interested
