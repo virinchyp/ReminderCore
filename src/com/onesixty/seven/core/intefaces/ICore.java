@@ -43,16 +43,16 @@ public interface ICore {
 		 * 
 		 * Object: UserPreferenceObject
 		 */
-		EVENT_EXIT_LOCATION_RADIUS,
-
-		/**
-		 * Event to inform the platform to register for alarm service.
-		 * 
-		 * Object: Reminder or Phone Setting
-		 */
-		REGISTER_FOR_ALARM_SERVICE
-
+		EVENT_EXIT_LOCATION_RADIUS
 	}
+
+	/**
+	 * Set the platform object for the core.
+	 * 
+	 * @param platform
+	 *            the IPlatform object
+	 */
+	public void setPlatform(IPlatform platform);
 
 	/**
 	 * Sets the current location.

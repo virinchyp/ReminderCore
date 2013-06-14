@@ -8,6 +8,7 @@ import java.util.Map;
 
 import com.onesixty.seven.core.intefaces.ICore;
 import com.onesixty.seven.core.intefaces.ILocation;
+import com.onesixty.seven.core.intefaces.IPlatform;
 import com.onesixty.seven.core.intefaces.IStorageProvider;
 import com.onesixty.seven.core.objects.Notification;
 import com.onesixty.seven.core.objects.PhoneSetting;
@@ -39,6 +40,9 @@ public class Core implements ICore {
 	/** The reminder manager. */
 	private IStorageProvider storage;
 
+	/** The platform. */
+	private IPlatform platform;
+
 	/**
 	 * Instantiates a new core.
 	 */
@@ -52,6 +56,18 @@ public class Core implements ICore {
 	 * (non-Javadoc)
 	 * 
 	 * @see
+	 * com.onesixty.seven.core.intefaces.ICore#setPlatform(com.onesixty.seven
+	 * .core.intefaces.IPlatform)
+	 */
+	@Override
+	public void setPlatform(IPlatform platform) {
+		this.platform = platform;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
 	 * com.onesixty.seven.core.intefaces.ICore#setCurrentLocation(com.onesixty
 	 * .seven.core.objects.LocationObject)
 	 */
@@ -59,7 +75,7 @@ public class Core implements ICore {
 	public void setCurrentLocation(ILocation newLocation) {
 		lastLocation = currentLocation;
 		currentLocation = newLocation;
-		List<Long> id = this.getProximityLocationFor(currentLocation);
+		List<Long> id = this.getNotificationsForLocation(currentLocation);
 		Iterator<Long> it = id.iterator();
 		while (it.hasNext()) {
 			this.broadcastEvent(ICore.Event.EVENT_ENTER_LOCATION_RADIUS,
@@ -140,6 +156,7 @@ public class Core implements ICore {
 
 	@Override
 	public boolean deleteNotification(long id) {
+		this.savedLocations.remove(id);
 		return storage.deleteNotification(id);
 	}
 
@@ -175,7 +192,7 @@ public class Core implements ICore {
 	 * @param location
 	 * @return List of notification id
 	 */
-	private List<Long> getProximityLocationFor(ILocation location) {
+	private List<Long> getNotificationsForLocation(ILocation location) {
 		List<Long> ids = new ArrayList<Long>();
 		Iterator<Long> it = this.savedLocations.keySet().iterator();
 		while (it.hasNext()) {
