@@ -144,7 +144,7 @@ public class Core implements ICore {
 
 	@Override
 	public long addNotification(Notification item) {
-		if (item.getType() == Notification.NotificationType.LOCATION_BASED)
+		if (item.getType() == Notification.Type.LOCATION_BASED)
 			this.savedLocations.put(item.getId(), item.getLocation());
 		return storage.addNotification(item);
 	}

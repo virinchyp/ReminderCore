@@ -33,7 +33,7 @@ public interface ICore {
 		 * When the device enters in the radius of a saved location associated
 		 * with a reminder.
 		 * 
-		 * Object: UserPreferenceObject
+		 * Object: Notification
 		 */
 		EVENT_ENTER_LOCATION_RADIUS,
 
@@ -41,9 +41,16 @@ public interface ICore {
 		 * When the device exits the radius of a saved location associated with
 		 * a reminder.
 		 * 
-		 * Object: UserPreferenceObject
+		 * Object: Notification
 		 */
-		EVENT_EXIT_LOCATION_RADIUS
+		EVENT_EXIT_LOCATION_RADIUS,
+
+		/**
+		 * When a time based reminder goes off.
+		 * 
+		 * Object: Notification
+		 */
+		EVENT_TIME_REMINDER
 	}
 
 	/**

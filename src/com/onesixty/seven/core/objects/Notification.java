@@ -17,7 +17,7 @@ public class Notification {
 	protected long time;
 
 	/** The notification type. */
-	protected NotificationType notificationType;
+	protected Type notificationType;
 
 	/** The location type */
 	protected LocationType locationType;
@@ -40,7 +40,7 @@ public class Notification {
 	/**
 	 * The Enum NotificationType.
 	 */
-	public static enum NotificationType {
+	public static enum Type {
 
 		/** The time based notification. */
 		TIME_BASED,
@@ -61,7 +61,7 @@ public class Notification {
 			LocationType locationType) {
 		this.id = id;
 		this.location = location;
-		this.notificationType = Notification.NotificationType.LOCATION_BASED;
+		this.notificationType = Notification.Type.LOCATION_BASED;
 	}
 
 	/**
@@ -75,7 +75,7 @@ public class Notification {
 	protected Notification(final long id, long time, LocationType locationType) {
 		this.id = id;
 		this.time = time;
-		this.notificationType = Notification.NotificationType.TIME_BASED;
+		this.notificationType = Notification.Type.TIME_BASED;
 	}
 
 	/**
@@ -130,7 +130,7 @@ public class Notification {
 	 * 
 	 * @return the type
 	 */
-	public NotificationType getType() {
+	public Type getType() {
 		return notificationType;
 	}
 
@@ -140,7 +140,7 @@ public class Notification {
 	 * @param type
 	 *            the new type
 	 */
-	public void setType(NotificationType type) {
+	public void setType(Type type) {
 		this.notificationType = type;
 	}
 
