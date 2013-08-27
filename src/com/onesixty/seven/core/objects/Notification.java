@@ -62,6 +62,7 @@ public class Notification {
 		this.id = id;
 		this.location = location;
 		this.notificationType = Notification.Type.LOCATION_BASED;
+		this.locationType = locationType;
 	}
 
 	/**
@@ -76,6 +77,7 @@ public class Notification {
 		this.id = id;
 		this.time = time;
 		this.notificationType = Notification.Type.TIME_BASED;
+		this.locationType = null;
 	}
 
 	/**
@@ -128,7 +130,7 @@ public class Notification {
 	/**
 	 * Gets the NotificationType.
 	 * 
-	 * @return the type
+	 * @return the NotificationType
 	 */
 	public Type getType() {
 		return notificationType;
@@ -138,10 +140,29 @@ public class Notification {
 	 * Sets the NotificationType.
 	 * 
 	 * @param type
-	 *            the new type
+	 *            the new NotificationType
 	 */
 	public void setType(Type type) {
 		this.notificationType = type;
 	}
 
+	/**
+	 * Get the LocationType
+	 * 
+	 * @return the LocationType
+	 */
+	public LocationType getLocationType() {
+		return locationType;
+	}
+
+	/**
+	 * Sets the LocationType.
+	 * 
+	 * @param locationType
+	 *            the new LocationType
+	 */
+
+	public void setLocationType(LocationType locationType) {
+		this.locationType = locationType;
+	}
 }
