@@ -91,7 +91,7 @@ public class Core implements ICore {
 			LocationType type = notification.getLocationType();
 			if(type!=null && type.equals(LocationType.ENTER_LOCATION)) {
 				this.broadcastEvent(ICore.Event.EVENT_ENTER_LOCATION_RADIUS,notification);
-				this.deleteNotification(id);
+				savedLocations.remove(id);
 			}
 		}
 		/** last - current = exit events only */
@@ -102,7 +102,7 @@ public class Core implements ICore {
 			LocationType type = notification.getLocationType();
 			if(type!=null && type.equals(LocationType.EXIT_LOCATION)) {
 				this.broadcastEvent(ICore.Event.EVENT_EXIT_LOCATION_RADIUS,notification);
-				this.deleteNotification(id);
+				savedLocations.remove(id);
 			}
 		}
 	}
