@@ -11,6 +11,7 @@ import com.onesixty.seven.core.intefaces.ILocation;
 import com.onesixty.seven.core.intefaces.IPlatform;
 import com.onesixty.seven.core.intefaces.IStorageProvider;
 import com.onesixty.seven.core.objects.Notification;
+import com.onesixty.seven.core.objects.Notification.LocationType;
 import com.onesixty.seven.core.objects.PhoneSetting;
 import com.onesixty.seven.core.objects.Reminder;
 
@@ -73,14 +74,47 @@ public class Core implements ICore {
 	 */
 	@Override
 	public void setCurrentLocation(ILocation newLocation) {
+		/** get locations that are in radius */
+		List<Long> lastList = this.getNotificationsForLocation(lastLocation);
+		List<Long> currentList = this.getNotificationsForLocation(currentLocation);
+		/** update last and current location */
 		lastLocation = currentLocation;
 		currentLocation = newLocation;
-		List<Long> id = this.getNotificationsForLocation(currentLocation);
-		Iterator<Long> it = id.iterator();
+		/** get the difference of list */
+		List<Long> enterList = this.differenceList(currentList,lastList);
+		List<Long> exitList = this.differenceList(lastList,currentList);
+		/** Current - Last = enter events only */
+		Iterator<Long> it = enterList.iterator();
 		while (it.hasNext()) {
-			this.broadcastEvent(ICore.Event.EVENT_ENTER_LOCATION_RADIUS,
-					this.getNotification(it.next()));
+			long id = it.next();
+			Notification notification = this.getNotification(id);
+			LocationType type = notification.getLocationType();
+			if(type!=null && type.equals(LocationType.ENTER_LOCATION)) {
+				this.broadcastEvent(ICore.Event.EVENT_ENTER_LOCATION_RADIUS,notification);
+				this.deleteNotification(id);
+			}
 		}
+		/** last - current = exit events only */
+		it = exitList.iterator();
+		while (it.hasNext()) {
+			long id = it.next();
+			Notification notification = this.getNotification(id);
+			LocationType type = notification.getLocationType();
+			if(type!=null && type.equals(LocationType.EXIT_LOCATION)) {
+				this.broadcastEvent(ICore.Event.EVENT_EXIT_LOCATION_RADIUS,notification);
+				this.deleteNotification(id);
+			}
+		}
+	}
+	
+	
+	private List<Long> differenceList(List<Long> a, List<Long> b)
+	{
+		List<Long> difference = new ArrayList<Long>();
+		for (Long long1 : a) {
+			if(!b.contains(long1)) difference.add(long1);
+		}
+		return difference;
 	}
 
 	/*
