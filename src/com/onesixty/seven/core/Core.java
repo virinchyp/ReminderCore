@@ -75,8 +75,8 @@ public class Core implements ICore {
 	@Override
 	public void setCurrentLocation(ILocation newLocation) {
 		/** get locations that are in radius */
-		List<Long> lastList = this.getNotificationsForLocation(lastLocation);
-		List<Long> currentList = this.getNotificationsForLocation(currentLocation);
+		List<Long> lastList = this.getNotificationIdsForLocation(lastLocation);
+		List<Long> currentList = this.getNotificationIdsForLocation(currentLocation);
 		/** update last and current location */
 		lastLocation = currentLocation;
 		currentLocation = newLocation;
@@ -226,7 +226,7 @@ public class Core implements ICore {
 	 * @param location
 	 * @return List of notification id
 	 */
-	private List<Long> getNotificationsForLocation(ILocation location) {
+	private List<Long> getNotificationIdsForLocation(ILocation location) {
 		List<Long> ids = new ArrayList<Long>();
 		Iterator<Long> it = this.savedLocations.keySet().iterator();
 		while (it.hasNext()) {
