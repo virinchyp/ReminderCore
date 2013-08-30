@@ -26,7 +26,7 @@ import com.onesixty.seven.core.objects.Reminder;
  * @author Anupam
  * 
  */
-public class Core implements ICore {
+public class Core implements ICore, IPlatform.IListener {
 
 	/** The locations. */
 	private HashMap<Long, ILocation> savedLocations;
@@ -40,8 +40,17 @@ public class Core implements ICore {
 	/** The platform. */
 	private IPlatform platform;
 
+	/** The current location. */
+	private ILocation currentLocation;
+
+	/** The last location. */
+	private ILocation lastLocation;
+
 	/**
 	 * Instantiates a new core.
+	 * 
+	 * @param platformStorage
+	 *            the platform storage
 	 */
 	public Core(IStorageProvider platformStorage) {
 		savedLocations = new HashMap<Long, ILocation>();
@@ -108,6 +117,9 @@ public class Core implements ICore {
 
 	@Override
 	public void setCurrentLocation(ILocation newLocation) {
+		lastLocation = currentLocation;
+		currentLocation = newLocation;
+
 		Iterator<Long> it = savedLocations.keySet().iterator();
 		Set<Long> locationsToRemove = new HashSet<Long>();
 		while (it.hasNext()) {
@@ -204,6 +216,13 @@ public class Core implements ICore {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.onesixty.seven.core.intefaces.ICore#addNotification(com.onesixty.
+	 * seven.core.objects.Notification)
+	 */
 	@Override
 	public long addNotification(Notification item) {
 		if (item.getType() == Notification.Type.LOCATION_BASED)
@@ -211,40 +230,89 @@ public class Core implements ICore {
 		return storage.addNotification(item);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.onesixty.seven.core.intefaces.ICore#modifyNotification(long,
+	 * com.onesixty.seven.core.objects.Notification)
+	 */
 	@Override
 	public boolean modifyNotification(long id, Notification item) {
 		return storage.modifyNotification(id, item);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.onesixty.seven.core.intefaces.ICore#deleteNotification(long)
+	 */
 	@Override
 	public boolean deleteNotification(long id) {
 		this.savedLocations.remove(id);
 		return storage.deleteNotification(id);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.onesixty.seven.core.intefaces.ICore#getNotification(long)
+	 */
 	@Override
 	public Notification getNotification(long id) {
 		return storage.getNotification(id);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.onesixty.seven.core.intefaces.ICore#getAllNotifications()
+	 */
 	@Override
 	public List<Notification> getAllNotifications() {
 		return storage.getAllNotifications();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.onesixty.seven.core.intefaces.ICore#getAllReminderNotifications()
+	 */
 	@Override
 	public List<Reminder> getAllReminderNotifications() {
 		return storage.getAllReminderNotifications();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.onesixty.seven.core.intefaces.ICore#getAllPhoneSettingNotifications()
+	 */
 	@Override
 	public List<PhoneSetting> getAllPhoneSettingNotifications() {
 		return storage.getAllPhoneSettingNotifications();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.onesixty.seven.core.intefaces.ICore#containsNotification(long)
+	 */
 	@Override
 	public boolean containsNotification(long id) {
 		return storage.containsNotification(id);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.onesixty.seven.core.intefaces.IPlatform.IListener#notifyAlarm()
+	 */
+	@Override
+	public void notifyAlarm() {
+		// TODO Auto-generated method stub
+
 	}
 
 	// /**

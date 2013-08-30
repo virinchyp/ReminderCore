@@ -8,7 +8,6 @@ import com.onesixty.seven.core.intefaces.ICore.Event;
 import com.onesixty.seven.core.intefaces.ILocation;
 import com.onesixty.seven.core.intefaces.IStorageProvider;
 import com.onesixty.seven.core.objects.Notification;
-import com.onesixty.seven.core.objects.Notification.LocationType;
 import com.onesixty.seven.core.objects.Reminder;
 import com.onesixty.seven.core.util.Util;
 
@@ -22,8 +21,7 @@ public class Model implements ICore.IListener {
 	public Model(int mRow, int mCol) {
 		this.storage = new StorageModel();
 		chutiyaCore = new Core(this.storage);
-		this.chutiyaCore.addListener(ICore.Event.EVENT_ENTER_LOCATION_RADIUS,
-				this);
+		this.chutiyaCore.addListener(ICore.Event.EVENT_ENTER_LOCATION_RADIUS, this);
 		this.maxRow = mRow;
 		this.maxCol = mCol;
 	}
@@ -81,8 +79,7 @@ public class Model implements ICore.IListener {
 		ILocation l = new LocationModel(r, c, this.maxRow, this.maxCol, 5);
 		long id = Util.generateId();
 
-		Notification item = new Reminder(id, l, LocationType.ENTER_LOCATION,
-				reminder);
+		Notification item = new Reminder(id, l, reminder);
 		this.chutiyaCore.addNotification(item);
 	}
 
