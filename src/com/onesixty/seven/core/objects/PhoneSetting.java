@@ -46,12 +46,11 @@ public class PhoneSetting extends Notification {
 	 * @param notifyUser
 	 *            the notify user
 	 */
-	public PhoneSetting(long id, long time, LocationType locationType,
-			boolean vibration, boolean wifi, boolean bluetooth,
-			boolean mobileData, int soundLevel, float pDistnace,
-			boolean notifyUser) {
+	public PhoneSetting(long id, long time, boolean vibration, boolean wifi,
+			boolean bluetooth, boolean mobileData, int soundLevel,
+			float pDistnace, boolean notifyUser) {
 
-		super(id, time, locationType);
+		super(id, time);
 		this.vibration = vibration;
 		this.wifi = wifi;
 		this.bluetooth = bluetooth;
@@ -83,12 +82,11 @@ public class PhoneSetting extends Notification {
 	 * @param notifyUser
 	 *            the notify user
 	 */
-	public PhoneSetting(long id, ILocation location, LocationType locationType,
-			boolean vibration, boolean wifi, boolean bluetooth,
-			boolean mobileData, int soundLevel, float pDistnace,
-			boolean notifyUser) {
+	public PhoneSetting(long id, ILocation location, boolean vibration,
+			boolean wifi, boolean bluetooth, boolean mobileData,
+			int soundLevel, float pDistnace, boolean notifyUser) {
 
-		super(id, location, locationType);
+		super(id, location);
 		this.vibration = vibration;
 		this.wifi = wifi;
 		this.bluetooth = bluetooth;

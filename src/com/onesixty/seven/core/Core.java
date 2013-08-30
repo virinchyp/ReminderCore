@@ -2,16 +2,18 @@ package com.onesixty.seven.core;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import com.onesixty.seven.core.intefaces.ICore;
 import com.onesixty.seven.core.intefaces.ILocation;
+import com.onesixty.seven.core.intefaces.ILocation.LocationType;
 import com.onesixty.seven.core.intefaces.IPlatform;
 import com.onesixty.seven.core.intefaces.IStorageProvider;
 import com.onesixty.seven.core.objects.Notification;
-import com.onesixty.seven.core.objects.Notification.LocationType;
 import com.onesixty.seven.core.objects.PhoneSetting;
 import com.onesixty.seven.core.objects.Reminder;
 
@@ -31,12 +33,6 @@ public class Core implements ICore {
 
 	/** The listener map. */
 	private Map<ICore.Event, List<IListener>> listenerMap;
-
-	/** The last location. */
-	private ILocation lastLocation;
-
-	/** The current location. */
-	private ILocation currentLocation;
 
 	/** The reminder manager. */
 	private IStorageProvider storage;
@@ -72,50 +68,82 @@ public class Core implements ICore {
 	 * com.onesixty.seven.core.intefaces.ICore#setCurrentLocation(com.onesixty
 	 * .seven.core.objects.LocationObject)
 	 */
+	// @Override
+	// public void setCurrentLocation(ILocation newLocation) {
+	// /** get locations that are in radius */
+	// List<Long> lastList = this.getNotificationIdsForLocation(lastLocation);
+	// List<Long> currentList =
+	// this.getNotificationIdsForLocation(currentLocation);
+	// /** update last and current location */
+	// lastLocation = currentLocation;
+	// currentLocation = newLocation;
+	// /** get the difference of list */
+	// List<Long> enterList = this.differenceList(currentList, lastList);
+	// List<Long> exitList = this.differenceList(lastList, currentList);
+	// /** Current - Last = enter events only */
+	// Iterator<Long> it = enterList.iterator();
+	// while (it.hasNext()) {
+	// long id = it.next();
+	// Notification notification = this.getNotification(id);
+	// LocationType type = notification.getLocationType();
+	// if (type != null && type.equals(LocationType.ENTER_LOCATION)) {
+	// this.broadcastEvent(ICore.Event.EVENT_ENTER_LOCATION_RADIUS,
+	// notification);
+	// savedLocations.remove(id);
+	// }
+	// }
+	// /** last - current = exit events only */
+	// it = exitList.iterator();
+	// while (it.hasNext()) {
+	// long id = it.next();
+	// Notification notification = this.getNotification(id);
+	// LocationType type = notification.getLocationType();
+	// if (type != null && type.equals(LocationType.EXIT_LOCATION)) {
+	// this.broadcastEvent(ICore.Event.EVENT_EXIT_LOCATION_RADIUS,
+	// notification);
+	// savedLocations.remove(id);
+	// }
+	// }
+	// }
+
 	@Override
 	public void setCurrentLocation(ILocation newLocation) {
-		/** get locations that are in radius */
-		List<Long> lastList = this.getNotificationIdsForLocation(lastLocation);
-		List<Long> currentList = this.getNotificationIdsForLocation(currentLocation);
-		/** update last and current location */
-		lastLocation = currentLocation;
-		currentLocation = newLocation;
-		/** get the difference of list */
-		List<Long> enterList = this.differenceList(currentList,lastList);
-		List<Long> exitList = this.differenceList(lastList,currentList);
-		/** Current - Last = enter events only */
-		Iterator<Long> it = enterList.iterator();
+		Iterator<Long> it = savedLocations.keySet().iterator();
+		Set<Long> locationsToRemove = new HashSet<Long>();
 		while (it.hasNext()) {
 			long id = it.next();
-			Notification notification = this.getNotification(id);
-			LocationType type = notification.getLocationType();
-			if(type!=null && type.equals(LocationType.ENTER_LOCATION)) {
-				this.broadcastEvent(ICore.Event.EVENT_ENTER_LOCATION_RADIUS,notification);
-				savedLocations.remove(id);
+			ILocation location = savedLocations.get(id);
+			float distance = location.distanceTo(newLocation);
+
+			if (distance <= location.getRadius()) {
+				if (location.getLocationType().equals(LocationType.ENTER_LOCATION)) {
+					locationsToRemove.add(id);
+					this.broadcastEvent(ICore.Event.EVENT_ENTER_LOCATION_RADIUS, getNotification(id));
+				} else {
+					// FIXME: is this right? or do we have to call
+					// setNotification too?
+					getNotification(id).setExitFlag(true);
+				}
+			} else {
+				Boolean exitFlag = getNotification(id).getExitFlag();
+				if (exitFlag != null && exitFlag) {
+					locationsToRemove.add(id);
+					this.broadcastEvent(ICore.Event.EVENT_EXIT_LOCATION_RADIUS, getNotification(id));
+				}
 			}
 		}
-		/** last - current = exit events only */
-		it = exitList.iterator();
-		while (it.hasNext()) {
-			long id = it.next();
-			Notification notification = this.getNotification(id);
-			LocationType type = notification.getLocationType();
-			if(type!=null && type.equals(LocationType.EXIT_LOCATION)) {
-				this.broadcastEvent(ICore.Event.EVENT_EXIT_LOCATION_RADIUS,notification);
-				savedLocations.remove(id);
-			}
-		}
+
+		savedLocations.keySet().removeAll(locationsToRemove);
 	}
-	
-	
-	private List<Long> differenceList(List<Long> a, List<Long> b)
-	{
-		List<Long> difference = new ArrayList<Long>();
-		for (Long long1 : a) {
-			if(!b.contains(long1)) difference.add(long1);
-		}
-		return difference;
-	}
+
+	// private List<Long> differenceList(List<Long> a, List<Long> b) {
+	// List<Long> difference = new ArrayList<Long>();
+	// for (Long long1 : a) {
+	// if (!b.contains(long1))
+	// difference.add(long1);
+	// }
+	// return difference;
+	// }
 
 	/*
 	 * (non-Javadoc)
@@ -219,24 +247,24 @@ public class Core implements ICore {
 		return storage.containsNotification(id);
 	}
 
-	/**
-	 * This function is used to get list of notifications id if the given
-	 * location is under proximity of any of the saved locations
-	 * 
-	 * @param location
-	 * @return List of notification id
-	 */
-	private List<Long> getNotificationIdsForLocation(ILocation location) {
-		List<Long> ids = new ArrayList<Long>();
-		Iterator<Long> it = this.savedLocations.keySet().iterator();
-		while (it.hasNext()) {
-			long id = it.next();
-			ILocation loc = this.savedLocations.get(id);
-			float distance = loc.distanceTo(location);
-			if (distance <= loc.getRadius()) {
-				ids.add(id);
-			}
-		}
-		return ids;
-	}
+	// /**
+	// * This function is used to get list of notifications id if the given
+	// * location is under proximity of any of the saved locations
+	// *
+	// * @param location
+	// * @return List of notification id
+	// */
+	// private List<Long> getNotificationIdsForLocation(ILocation location) {
+	// List<Long> ids = new ArrayList<Long>();
+	// Iterator<Long> it = this.savedLocations.keySet().iterator();
+	// while (it.hasNext()) {
+	// long id = it.next();
+	// ILocation loc = this.savedLocations.get(id);
+	// float distance = loc.distanceTo(location);
+	// if (distance <= loc.getRadius()) {
+	// ids.add(id);
+	// }
+	// }
+	// return ids;
+	// }
 }
