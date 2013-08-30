@@ -70,6 +70,11 @@ public interface ICore {
 	public void setCurrentLocation(ILocation newLocation);
 
 	/**
+	 * Notify core about the alarm that went off.
+	 */
+	public void notifyAlarm();
+
+	/**
 	 * Adds the listener.
 	 * 
 	 * @param type

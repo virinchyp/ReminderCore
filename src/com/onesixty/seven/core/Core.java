@@ -134,13 +134,18 @@ public class Core implements ICore, IPlatform.IListener {
 				} else {
 					// FIXME: is this right? or do we have to call
 					// setNotification too?
-					getNotification(id).setExitFlag(true);
+					Notification notification = getNotification(id);
+					notification.setExitFlag(true);
+					modifyNotification(id, notification);
 				}
 			} else {
 				Boolean exitFlag = getNotification(id).getExitFlag();
 				if (exitFlag != null && exitFlag) {
 					locationsToRemove.add(id);
-					this.broadcastEvent(ICore.Event.EVENT_EXIT_LOCATION_RADIUS, getNotification(id));
+					Notification notification = getNotification(id);
+					notification.setExitFlag(null);
+					modifyNotification(id, notification);
+					this.broadcastEvent(ICore.Event.EVENT_EXIT_LOCATION_RADIUS, notification);
 				}
 			}
 		}
@@ -307,7 +312,7 @@ public class Core implements ICore, IPlatform.IListener {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.onesixty.seven.core.intefaces.IPlatform.IListener#notifyAlarm()
+	 * @see com.onesixty.seven.core.intefaces.ICore#notifyAlarm()
 	 */
 	@Override
 	public void notifyAlarm() {
