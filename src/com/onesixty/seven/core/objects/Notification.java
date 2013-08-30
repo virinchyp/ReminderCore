@@ -19,23 +19,14 @@ public class Notification {
 	/** The notification type. */
 	protected Type notificationType;
 
-	/** The location type */
-	protected LocationType locationType;
-
-	/** proximity for location */
+	/** Proximity for location. */
 	protected float radius;
 
 	/**
-	 * The Enum NotificationType.
+	 * Flag to check if current location has exited the radius of the location
+	 * associated with this location.
 	 */
-	public static enum LocationType {
-
-		/** Notification set for entering a location. */
-		ENTER_LOCATION,
-
-		/** Notification set for exiting a location. */
-		EXIT_LOCATION
-	}
+	protected Boolean exitFlag;
 
 	/**
 	 * The Enum NotificationType.
@@ -57,12 +48,11 @@ public class Notification {
 	 * @param location
 	 *            the location
 	 */
-	protected Notification(final long id, ILocation location,
-			LocationType locationType) {
+	protected Notification(final long id, ILocation location) {
 		this.id = id;
 		this.location = location;
+		this.exitFlag = null;
 		this.notificationType = Notification.Type.LOCATION_BASED;
-		this.locationType = locationType;
 	}
 
 	/**
@@ -73,11 +63,12 @@ public class Notification {
 	 * @param time
 	 *            the time
 	 */
-	protected Notification(final long id, long time, LocationType locationType) {
+	protected Notification(final long id, long time) {
 		this.id = id;
 		this.time = time;
+		this.exitFlag = null;
 		this.notificationType = Notification.Type.TIME_BASED;
-		this.locationType = null;
+
 	}
 
 	/**
@@ -147,22 +138,22 @@ public class Notification {
 	}
 
 	/**
-	 * Get the LocationType
+	 * Gets the exited radius flag value.
 	 * 
-	 * @return the LocationType
+	 * @return true if the current location has exited the radius of this
+	 *         notification, false otherwise
 	 */
-	public LocationType getLocationType() {
-		return locationType;
+	public Boolean getExitFlag() {
+		return exitFlag;
 	}
 
 	/**
-	 * Sets the LocationType.
+	 * Sets the exited radius flag value.
 	 * 
-	 * @param locationType
-	 *            the new LocationType
+	 * @param exitedRadius
+	 *            the new exited radius flag value.
 	 */
-
-	public void setLocationType(LocationType locationType) {
-		this.locationType = locationType;
+	public void setExitFlag(Boolean exitFlag) {
+		this.exitFlag = exitFlag;
 	}
 }

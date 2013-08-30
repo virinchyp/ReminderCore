@@ -10,17 +10,15 @@ public class Reminder extends Notification {
 	/** The message. */
 	private String message;
 
-	/** Constructor to make a reminder based on time */
-	public Reminder(long id, long time, LocationType locationType,
-			String message) {
-		super(id, time, locationType);
+	/** Constructor to make a reminder based on location */
+	public Reminder(long id, ILocation location, String message) {
+		super(id, location);
 		this.message = message;
 	}
 
-	/** Constructor to make a reminder based on location */
-	public Reminder(long id, ILocation location, LocationType locationType,
-			String message) {
-		super(id, location, locationType);
+	/** Constructor to make a reminder based on time */
+	public Reminder(long id, long time, String message) {
+		super(id, time);
 		this.message = message;
 	}
 
@@ -61,8 +59,7 @@ public class Reminder extends Notification {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		return (obj instanceof Reminder) ? this.id == ((Reminder) obj).id
-				: false;
+		return (obj instanceof Reminder) ? this.id == ((Reminder) obj).id : false;
 	}
 
 	/*
