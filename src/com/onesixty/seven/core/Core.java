@@ -26,7 +26,7 @@ import com.onesixty.seven.core.objects.Reminder;
  * @author Anupam
  * 
  */
-public class Core implements ICore, IPlatform.IListener {
+public class Core implements ICore {
 
 	/** The locations. */
 	private HashMap<Long, ILocation> savedLocations;
