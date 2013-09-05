@@ -28,8 +28,11 @@ import com.onesixty.seven.core.objects.Reminder;
  */
 public class Core implements ICore {
 
-	/** The locations. */
-	private HashMap<Long, ILocation> savedLocations;
+	/** The saved locations. */
+	private Map<Long, ILocation> savedLocations;
+
+	/** The saved times. */
+	private Map<Long, Long> savedTimes;
 
 	/** The listener map. */
 	private Map<ICore.Event, List<IListener>> listenerMap;
@@ -40,12 +43,6 @@ public class Core implements ICore {
 	/** The platform. */
 	private IPlatform platform;
 
-	/** The current location. */
-	private ILocation currentLocation;
-
-	/** The last location. */
-	private ILocation lastLocation;
-
 	/**
 	 * Instantiates a new core.
 	 * 
@@ -54,6 +51,7 @@ public class Core implements ICore {
 	 */
 	public Core(IStorageProvider platformStorage) {
 		savedLocations = new HashMap<Long, ILocation>();
+		savedTimes = new HashMap<Long, Long>();
 		listenerMap = new HashMap<ICore.Event, List<IListener>>();
 		storage = platformStorage;
 	}
@@ -117,11 +115,9 @@ public class Core implements ICore {
 
 	@Override
 	public void setCurrentLocation(ILocation newLocation) {
-		lastLocation = currentLocation;
-		currentLocation = newLocation;
 
 		Iterator<Long> it = savedLocations.keySet().iterator();
-		Set<Long> locationsToRemove = new HashSet<Long>();
+		Set<Long> idsToRemove = new HashSet<Long>();
 		while (it.hasNext()) {
 			long id = it.next();
 			ILocation location = savedLocations.get(id);
@@ -129,11 +125,11 @@ public class Core implements ICore {
 
 			if (distance <= location.getRadius()) {
 				if (location.getLocationType().equals(LocationType.ENTER_LOCATION)) {
-					locationsToRemove.add(id);
-					this.broadcastEvent(ICore.Event.EVENT_ENTER_LOCATION_RADIUS, getNotification(id));
+					idsToRemove.add(id);
+					broadcastEvent(ICore.Event.EVENT_ENTER_LOCATION_RADIUS, getNotification(id));
 				} else {
 					// FIXME: is this right? or do we have to call
-					// setNotification too?
+					// modifyNotification too?
 					Notification notification = getNotification(id);
 					notification.setExitFlag(true);
 					modifyNotification(id, notification);
@@ -141,16 +137,16 @@ public class Core implements ICore {
 			} else {
 				Boolean exitFlag = getNotification(id).getExitFlag();
 				if (exitFlag != null && exitFlag) {
-					locationsToRemove.add(id);
+					idsToRemove.add(id);
 					Notification notification = getNotification(id);
 					notification.setExitFlag(null);
 					modifyNotification(id, notification);
-					this.broadcastEvent(ICore.Event.EVENT_EXIT_LOCATION_RADIUS, notification);
+					broadcastEvent(ICore.Event.EVENT_EXIT_LOCATION_RADIUS, notification);
 				}
 			}
 		}
 
-		savedLocations.keySet().removeAll(locationsToRemove);
+		savedLocations.keySet().removeAll(idsToRemove);
 	}
 
 	// private List<Long> differenceList(List<Long> a, List<Long> b) {
@@ -232,6 +228,9 @@ public class Core implements ICore {
 	public long addNotification(Notification item) {
 		if (item.getType() == Notification.Type.LOCATION_BASED)
 			this.savedLocations.put(item.getId(), item.getLocation());
+		else {
+			this.savedTimes.put(item.getId(), item.getTime());
+		}
 		return storage.addNotification(item);
 	}
 
@@ -253,7 +252,15 @@ public class Core implements ICore {
 	 */
 	@Override
 	public boolean deleteNotification(long id) {
-		this.savedLocations.remove(id);
+		Notification item = storage.getNotification(id);
+		if (item != null) {
+			if (item.getType().equals(Notification.Type.LOCATION_BASED)) {
+				this.savedLocations.remove(id);
+			} else {
+				savedTimes.remove(id);
+			}
+		}
+
 		return storage.deleteNotification(id);
 	}
 
@@ -315,9 +322,19 @@ public class Core implements ICore {
 	 * @see com.onesixty.seven.core.intefaces.ICore#notifyAlarm()
 	 */
 	@Override
-	public void notifyAlarm() {
-		// TODO Auto-generated method stub
+	public void notifyAlarm(long alarmTime) {
+		Iterator<Long> it = savedTimes.keySet().iterator();
+		Set<Long> idsToRemove = new HashSet<Long>();
+		while (it.hasNext()) {
+			long id = it.next();
+			long savedTime = savedTimes.get(id);
+			if (savedTime == alarmTime) {
+				idsToRemove.add(id);
+				broadcastEvent(ICore.Event.EVENT_TIME_REMINDER, getNotification(id));
+			}
+		}
 
+		this.savedTimes.keySet().removeAll(idsToRemove);
 	}
 
 	// /**

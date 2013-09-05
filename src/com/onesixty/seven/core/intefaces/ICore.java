@@ -72,7 +72,7 @@ public interface ICore {
 	/**
 	 * Notify core about the alarm that went off.
 	 */
-	public void notifyAlarm();
+	public void notifyAlarm(long alarmTime);
 
 	/**
 	 * Adds the listener.

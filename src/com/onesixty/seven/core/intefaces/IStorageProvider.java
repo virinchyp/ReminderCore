@@ -41,7 +41,8 @@ public interface IStorageProvider {
 	public boolean deleteNotification(long id);
 
 	/**
-	 * Returns the notification with a given ID.
+	 * Returns the notification with the given ID or <code>null</code> if no
+	 * notification is found.
 	 * 
 	 * @param id
 	 *            the ID of the notification to return.
