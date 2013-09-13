@@ -54,6 +54,19 @@ public class Core implements ICore {
 		savedTimes = new HashMap<Long, Long>();
 		listenerMap = new HashMap<ICore.Event, List<IListener>>();
 		storage = platformStorage;
+
+		List<Notification> allNotifications = storage.getAllNotifications();
+		for (Notification notification : allNotifications) {
+			switch (notification.getType()) {
+			case LOCATION_BASED:
+				savedLocations.put(notification.getId(), notification.getLocation());
+				break;
+			case TIME_BASED:
+				savedTimes.put(notification.getId(), notification.getTime());
+			default:
+				break;
+			}
+		}
 	}
 
 	/*

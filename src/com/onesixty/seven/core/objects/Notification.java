@@ -37,7 +37,10 @@ public class Notification {
 		TIME_BASED,
 
 		/** The location based notification. */
-		LOCATION_BASED
+		LOCATION_BASED,
+
+		/** Neither location nor time based. */
+		NONE
 	}
 
 	/**
