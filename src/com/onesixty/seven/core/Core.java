@@ -68,51 +68,6 @@ public class Core implements ICore {
 		this.platform = platform;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.onesixty.seven.core.intefaces.ICore#setCurrentLocation(com.onesixty
-	 * .seven.core.objects.LocationObject)
-	 */
-	// @Override
-	// public void setCurrentLocation(ILocation newLocation) {
-	// /** get locations that are in radius */
-	// List<Long> lastList = this.getNotificationIdsForLocation(lastLocation);
-	// List<Long> currentList =
-	// this.getNotificationIdsForLocation(currentLocation);
-	// /** update last and current location */
-	// lastLocation = currentLocation;
-	// currentLocation = newLocation;
-	// /** get the difference of list */
-	// List<Long> enterList = this.differenceList(currentList, lastList);
-	// List<Long> exitList = this.differenceList(lastList, currentList);
-	// /** Current - Last = enter events only */
-	// Iterator<Long> it = enterList.iterator();
-	// while (it.hasNext()) {
-	// long id = it.next();
-	// Notification notification = this.getNotification(id);
-	// LocationType type = notification.getLocationType();
-	// if (type != null && type.equals(LocationType.ENTER_LOCATION)) {
-	// this.broadcastEvent(ICore.Event.EVENT_ENTER_LOCATION_RADIUS,
-	// notification);
-	// savedLocations.remove(id);
-	// }
-	// }
-	// /** last - current = exit events only */
-	// it = exitList.iterator();
-	// while (it.hasNext()) {
-	// long id = it.next();
-	// Notification notification = this.getNotification(id);
-	// LocationType type = notification.getLocationType();
-	// if (type != null && type.equals(LocationType.EXIT_LOCATION)) {
-	// this.broadcastEvent(ICore.Event.EVENT_EXIT_LOCATION_RADIUS,
-	// notification);
-	// savedLocations.remove(id);
-	// }
-	// }
-	// }
-
 	@Override
 	public void setCurrentLocation(ILocation newLocation) {
 
