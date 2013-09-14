@@ -73,6 +73,12 @@ public class Notification {
 		this.notificationType = Notification.Type.TIME_BASED;
 
 	}
+	
+	protected Notification(final long id) {
+		this.id = id;
+		this.exitFlag = null;
+		this.notificationType = Notification.Type.NONE;
+	}
 
 	/**
 	 * Gets the id.

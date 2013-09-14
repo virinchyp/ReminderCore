@@ -24,27 +24,16 @@ public class PhoneSetting extends Notification {
 
 	/**
 	 * Instantiates a new phone setting object based on time.
-	 * 
-	 * @param id
-	 *            the id
-	 * @param time
-	 *            the time
-	 * @param locationType
-	 *            the location type
-	 * @param vibration
-	 *            the vibration
-	 * @param wifi
-	 *            the wifi
-	 * @param bluetooth
-	 *            the bluetooth
-	 * @param mobileData
-	 *            the mobile data
-	 * @param soundLevel
-	 *            the sound level
-	 * @param pDistnace
-	 *            the distnace
-	 * @param notifyUser
-	 *            the notify user
+	 *
+	 * @param id the id
+	 * @param time the time
+	 * @param vibration the vibration
+	 * @param wifi the wifi
+	 * @param bluetooth the bluetooth
+	 * @param mobileData the mobile data
+	 * @param soundLevel the sound level
+	 * @param pDistnace the distnace
+	 * @param notifyUser the notify user
 	 */
 	public PhoneSetting(long id, long time, boolean vibration, boolean wifi, boolean bluetooth, boolean mobileData,
 			int soundLevel, float pDistnace, boolean notifyUser) {
@@ -59,32 +48,44 @@ public class PhoneSetting extends Notification {
 
 	/**
 	 * Constructor to initialize phone setting notification based on location.
-	 * 
-	 * @param id
-	 *            the id
-	 * @param location
-	 *            the location
-	 * @param locationType
-	 *            the location type
-	 * @param vibration
-	 *            the vibration
-	 * @param wifi
-	 *            the wifi
-	 * @param bluetooth
-	 *            the bluetooth
-	 * @param mobileData
-	 *            the mobile data
-	 * @param soundLevel
-	 *            the sound level
-	 * @param pDistnace
-	 *            the distnace
-	 * @param notifyUser
-	 *            the notify user
+	 *
+	 * @param id the id
+	 * @param location the location
+	 * @param vibration the vibration
+	 * @param wifi the wifi
+	 * @param bluetooth the bluetooth
+	 * @param mobileData the mobile data
+	 * @param soundLevel the sound level
+	 * @param pDistnace the distnace
+	 * @param notifyUser the notify user
 	 */
 	public PhoneSetting(long id, ILocation location, boolean vibration, boolean wifi, boolean bluetooth,
 			boolean mobileData, int soundLevel, float pDistnace, boolean notifyUser) {
 
 		super(id, location);
+		this.vibration = vibration;
+		this.wifi = wifi;
+		this.bluetooth = bluetooth;
+		this.mobileData = mobileData;
+		this.soundLevel = soundLevel;
+	}
+	
+	/**
+	 * Constructor to initialize phone setting notification based neither on location nor time.
+	 *
+	 * @param id the id
+	 * @param vibration the vibration
+	 * @param wifi the wifi
+	 * @param bluetooth the bluetooth
+	 * @param mobileData the mobile data
+	 * @param soundLevel the sound level
+	 * @param pDistnace the distnace
+	 * @param notifyUser the notify user
+	 */
+	public PhoneSetting(long id, boolean vibration, boolean wifi, boolean bluetooth,
+			boolean mobileData, int soundLevel, float pDistnace, boolean notifyUser) {
+
+		super(id);
 		this.vibration = vibration;
 		this.wifi = wifi;
 		this.bluetooth = bluetooth;

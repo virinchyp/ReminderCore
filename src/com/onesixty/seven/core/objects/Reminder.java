@@ -21,6 +21,12 @@ public class Reminder extends Notification {
 		super(id, time);
 		this.message = message;
 	}
+	
+	/** Constructor to make a reminder based on neither time nor location */
+	public Reminder(long id, String message) {
+		super(id);
+		this.message = message;
+	}
 
 	/**
 	 * Gets the message.

@@ -96,8 +96,7 @@ public class Core implements ICore {
 					idsToRemove.add(id);
 					broadcastEvent(ICore.Event.EVENT_ENTER_LOCATION_RADIUS, getNotification(id));
 				} else {
-					// FIXME: is this right? or do we have to call
-					// modifyNotification too?
+
 					Notification notification = getNotification(id);
 					notification.setExitFlag(true);
 					modifyNotification(id, notification);
@@ -116,15 +115,6 @@ public class Core implements ICore {
 
 		savedLocations.keySet().removeAll(idsToRemove);
 	}
-
-	// private List<Long> differenceList(List<Long> a, List<Long> b) {
-	// List<Long> difference = new ArrayList<Long>();
-	// for (Long long1 : a) {
-	// if (!b.contains(long1))
-	// difference.add(long1);
-	// }
-	// return difference;
-	// }
 
 	/*
 	 * (non-Javadoc)
@@ -304,25 +294,4 @@ public class Core implements ICore {
 
 		this.savedTimes.keySet().removeAll(idsToRemove);
 	}
-
-	// /**
-	// * This function is used to get list of notifications id if the given
-	// * location is under proximity of any of the saved locations
-	// *
-	// * @param location
-	// * @return List of notification id
-	// */
-	// private List<Long> getNotificationIdsForLocation(ILocation location) {
-	// List<Long> ids = new ArrayList<Long>();
-	// Iterator<Long> it = this.savedLocations.keySet().iterator();
-	// while (it.hasNext()) {
-	// long id = it.next();
-	// ILocation loc = this.savedLocations.get(id);
-	// float distance = loc.distanceTo(location);
-	// if (distance <= loc.getRadius()) {
-	// ids.add(id);
-	// }
-	// }
-	// return ids;
-	// }
 }
