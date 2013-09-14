@@ -8,10 +8,10 @@ import com.onesixty.seven.core.intefaces.ILocation;
 /**
  * The Class Checklist.
  */
-public class Checklist extends Notification {
+public class CheckList extends Notification {
 	
 	/** The check list. */
-	private List<Todo> checkList;
+	private List<CheckListItem> checkList;
 	
 	/**
 	 * Instantiates a new checklist based on time.
@@ -19,9 +19,9 @@ public class Checklist extends Notification {
 	 * @param id the id
 	 * @param time the time
 	 */
-	public Checklist(long id, long time) {
+	public CheckList(long id, long time) {
 		super(id, time);
-		checkList = new ArrayList<Todo>();
+		checkList = new ArrayList<CheckListItem>();
 	}
 	
 	/**
@@ -30,9 +30,9 @@ public class Checklist extends Notification {
 	 * @param id the id
 	 * @param location the location
 	 */
-	public Checklist(long id, ILocation location) {
+	public CheckList(long id, ILocation location) {
 		super(id, location);
-		checkList = new ArrayList<Todo>();
+		checkList = new ArrayList<CheckListItem>();
 	}	
 	
 	/**
@@ -40,9 +40,9 @@ public class Checklist extends Notification {
 	 *
 	 * @param id the id
 	 */
-	public Checklist(long id) {
+	public CheckList(long id) {
 		super(id);
-		checkList = new ArrayList<Todo>();
+		checkList = new ArrayList<CheckListItem>();
 	}	
 	
 	/**
@@ -50,7 +50,7 @@ public class Checklist extends Notification {
 	 *
 	 * @return the list
 	 */
-	public List<Todo> getList()
+	public List<CheckListItem> getList()
 	{
 		return checkList;
 	}

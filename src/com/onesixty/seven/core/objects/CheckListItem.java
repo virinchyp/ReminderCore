@@ -3,7 +3,7 @@ package com.onesixty.seven.core.objects;
 /**
  * The Class Todo. It is unit of <code>Checklist</code> notification.
  */
-class Todo {
+class CheckListItem {
 	
 	/** The text of a todo. */
 	private String text;
@@ -16,7 +16,7 @@ class Todo {
 	 *
 	 * @param text the text
 	 */
-	public Todo(String text){
+	public CheckListItem(String text){
 		this.text = text;
 		this.checked = false;
 	}
