@@ -12,7 +12,7 @@ import com.onesixty.seven.core.intefaces.ICore;
 import com.onesixty.seven.core.intefaces.ILocation;
 import com.onesixty.seven.core.intefaces.ILocation.LocationType;
 import com.onesixty.seven.core.intefaces.IPlatform;
-import com.onesixty.seven.core.intefaces.IStorageProvider;
+import com.onesixty.seven.core.intefaces.IStorage;
 import com.onesixty.seven.core.objects.Notification;
 import com.onesixty.seven.core.objects.PhoneSetting;
 import com.onesixty.seven.core.objects.Reminder;
@@ -38,7 +38,7 @@ public class Core implements ICore {
 	private Map<ICore.Event, List<IListener>> listenerMap;
 
 	/** The reminder manager. */
-	private IStorageProvider storage;
+	private IStorage storage;
 
 	/** The platform. */
 	private IPlatform platform;
@@ -49,36 +49,25 @@ public class Core implements ICore {
 	 * @param platformStorage
 	 *            the platform storage
 	 */
-	public Core(IStorageProvider platformStorage) {
-		savedLocations = new HashMap<Long, ILocation>();
-		savedTimes = new HashMap<Long, Long>();
-		listenerMap = new HashMap<ICore.Event, List<IListener>>();
-		storage = platformStorage;
+	public Core(IPlatform platform) {
+		this.savedLocations = new HashMap<Long, ILocation>();
+		this.savedTimes = new HashMap<Long, Long>();
+		this.listenerMap = new HashMap<ICore.Event, List<IListener>>();
+		this.platform = platform;		
+		this.storage = platform.getPlatformStorage();
 
-		List<Notification> allNotifications = storage.getAllNotifications();
+		List<Notification> allNotifications = this.storage.getAllNotifications();
 		for (Notification notification : allNotifications) {
 			switch (notification.getType()) {
 			case LOCATION_BASED:
-				savedLocations.put(notification.getId(), notification.getLocation());
+				this.savedLocations.put(notification.getId(), notification.getLocation());
 				break;
 			case TIME_BASED:
-				savedTimes.put(notification.getId(), notification.getTime());
+				this.savedTimes.put(notification.getId(), notification.getTime());
 			default:
 				break;
 			}
 		}
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.onesixty.seven.core.intefaces.ICore#setPlatform(com.onesixty.seven
-	 * .core.intefaces.IPlatform)
-	 */
-	@Override
-	public void setPlatform(IPlatform platform) {
-		this.platform = platform;
 	}
 
 	@Override

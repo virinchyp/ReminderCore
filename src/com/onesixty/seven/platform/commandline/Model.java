@@ -6,21 +6,23 @@ import com.onesixty.seven.core.Core;
 import com.onesixty.seven.core.intefaces.ICore;
 import com.onesixty.seven.core.intefaces.ICore.Event;
 import com.onesixty.seven.core.intefaces.ILocation;
-import com.onesixty.seven.core.intefaces.IStorageProvider;
+import com.onesixty.seven.core.intefaces.IPlatform;
+import com.onesixty.seven.core.intefaces.IStorage;
 import com.onesixty.seven.core.objects.Notification;
 import com.onesixty.seven.core.objects.Reminder;
 import com.onesixty.seven.core.util.Util;
 
 public class Model implements ICore.IListener {
 
-	IStorageProvider storage;
+	IPlatform platform;
+
 	Core chutiyaCore;
 	int maxRow;
 	int maxCol;
 
 	public Model(int mRow, int mCol) {
-		this.storage = new StorageModel();
-		chutiyaCore = new Core(this.storage);
+		this.platform = new Platform();		
+		chutiyaCore = new Core(this.platform);
 		this.chutiyaCore.addListener(ICore.Event.EVENT_ENTER_LOCATION_RADIUS, this);
 		this.maxRow = mRow;
 		this.maxCol = mCol;

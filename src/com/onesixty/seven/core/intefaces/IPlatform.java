@@ -14,4 +14,9 @@ public interface IPlatform {
 	 * Deregister the platform for alarm service.
 	 */
 	public void deregisterForAlarm();
+	
+	/**
+	 * Get the storage component of the platform.
+	 */
+	public IStorage getPlatformStorage();
 }

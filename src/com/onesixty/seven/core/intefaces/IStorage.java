@@ -7,9 +7,9 @@ import com.onesixty.seven.core.objects.PhoneSetting;
 import com.onesixty.seven.core.objects.Reminder;
 
 /**
- * The Interface IManager.
+ * The Interface IStorageProvider.
  */
-public interface IStorageProvider {
+public interface IStorage {
 
 	/**
 	 * Adds a notification.

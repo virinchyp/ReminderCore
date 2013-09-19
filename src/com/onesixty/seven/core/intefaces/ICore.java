@@ -54,14 +54,6 @@ public interface ICore {
 	}
 
 	/**
-	 * Set the platform object for the core.
-	 * 
-	 * @param platform
-	 *            the IPlatform object
-	 */
-	public void setPlatform(IPlatform platform);
-
-	/**
 	 * Sets the current location.
 	 * 
 	 * @param newLocation

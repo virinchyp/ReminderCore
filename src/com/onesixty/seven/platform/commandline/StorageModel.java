@@ -5,12 +5,12 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
-import com.onesixty.seven.core.intefaces.IStorageProvider;
+import com.onesixty.seven.core.intefaces.IStorage;
 import com.onesixty.seven.core.objects.Notification;
 import com.onesixty.seven.core.objects.PhoneSetting;
 import com.onesixty.seven.core.objects.Reminder;
 
-public class StorageModel implements IStorageProvider{
+public class StorageModel implements IStorage{
 
 	protected HashMap<Long,Notification> items;
 	
