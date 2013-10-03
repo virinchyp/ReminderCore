@@ -81,7 +81,7 @@ public class Model implements ICore.IListener {
 		ILocation l = new LocationModel(r, c, this.maxRow, this.maxCol, 5);
 		long id = Util.generateId();
 
-		Notification item = new Reminder(id, l, reminder);
+		Notification item = new Reminder(id, "test", l, reminder);
 		this.chutiyaCore.addNotification(item);
 	}
 
