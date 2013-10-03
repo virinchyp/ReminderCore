@@ -17,10 +17,11 @@ public class CheckList extends Notification {
 	 * Instantiates a new checklist based on time.
 	 *
 	 * @param id the id
+	 * @param title the title
 	 * @param time the time
 	 */
-	public CheckList(long id, long time) {
-		super(id, time);
+	public CheckList(final long id, final String title, long time) {
+		super(id, title, time);
 		checkList = new ArrayList<CheckListItem>();
 	}
 	
@@ -28,10 +29,11 @@ public class CheckList extends Notification {
 	 * Instantiates a new checklist based on location.
 	 *
 	 * @param id the id
+	 * @param title the title
 	 * @param location the location
 	 */
-	public CheckList(long id, ILocation location) {
-		super(id, location);
+	public CheckList(final long id, final String title, ILocation location) {
+		super(id, title, location);
 		checkList = new ArrayList<CheckListItem>();
 	}	
 	
@@ -39,9 +41,10 @@ public class CheckList extends Notification {
 	 * Instantiates a new checklist based on neither time nor location.
 	 *
 	 * @param id the id
+	 * @param title the title
 	 */
-	public CheckList(long id) {
-		super(id);
+	public CheckList(final long id, final String title) {
+		super(id, title);
 		checkList = new ArrayList<CheckListItem>();
 	}	
 	

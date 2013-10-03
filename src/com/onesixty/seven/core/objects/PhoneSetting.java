@@ -26,6 +26,7 @@ public class PhoneSetting extends Notification {
 	 * Instantiates a new phone setting object based on time.
 	 *
 	 * @param id the id
+	 * @param title the title
 	 * @param time the time
 	 * @param vibration the vibration
 	 * @param wifi the wifi
@@ -35,10 +36,10 @@ public class PhoneSetting extends Notification {
 	 * @param pDistnace the distnace
 	 * @param notifyUser the notify user
 	 */
-	public PhoneSetting(long id, long time, boolean vibration, boolean wifi, boolean bluetooth, boolean mobileData,
+	public PhoneSetting(final long id, final String title, long time, boolean vibration, boolean wifi, boolean bluetooth, boolean mobileData,
 			int soundLevel, float pDistnace, boolean notifyUser) {
 
-		super(id, time);
+		super(id, title, time);
 		this.vibration = vibration;
 		this.wifi = wifi;
 		this.bluetooth = bluetooth;
@@ -50,6 +51,7 @@ public class PhoneSetting extends Notification {
 	 * Constructor to initialize phone setting notification based on location.
 	 *
 	 * @param id the id
+	 * @param title the title
 	 * @param location the location
 	 * @param vibration the vibration
 	 * @param wifi the wifi
@@ -59,10 +61,10 @@ public class PhoneSetting extends Notification {
 	 * @param pDistnace the distnace
 	 * @param notifyUser the notify user
 	 */
-	public PhoneSetting(long id, ILocation location, boolean vibration, boolean wifi, boolean bluetooth,
+	public PhoneSetting(final long id, final String title, ILocation location, boolean vibration, boolean wifi, boolean bluetooth,
 			boolean mobileData, int soundLevel, float pDistnace, boolean notifyUser) {
 
-		super(id, location);
+		super(id, title, location);
 		this.vibration = vibration;
 		this.wifi = wifi;
 		this.bluetooth = bluetooth;
@@ -74,6 +76,7 @@ public class PhoneSetting extends Notification {
 	 * Constructor to initialize phone setting notification based neither on location nor time.
 	 *
 	 * @param id the id
+	 * @param title the title
 	 * @param vibration the vibration
 	 * @param wifi the wifi
 	 * @param bluetooth the bluetooth
@@ -82,10 +85,10 @@ public class PhoneSetting extends Notification {
 	 * @param pDistnace the distnace
 	 * @param notifyUser the notify user
 	 */
-	public PhoneSetting(long id, boolean vibration, boolean wifi, boolean bluetooth,
+	public PhoneSetting(final long id, final String title, boolean vibration, boolean wifi, boolean bluetooth,
 			boolean mobileData, int soundLevel, float pDistnace, boolean notifyUser) {
 
-		super(id);
+		super(id, title);
 		this.vibration = vibration;
 		this.wifi = wifi;
 		this.bluetooth = bluetooth;

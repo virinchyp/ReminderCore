@@ -10,21 +10,40 @@ public class Reminder extends Notification {
 	/** The message. */
 	private String message;
 
-	/** Constructor to make a reminder based on location */
-	public Reminder(long id, ILocation location, String message) {
-		super(id, location);
+	/**
+	 * Constructor to make a reminder based on location.
+	 *
+	 * @param id the id
+	 * @param title the title
+	 * @param location the location
+	 * @param message the message
+	 */
+	public Reminder(final long id, final String title, ILocation location, String message) {
+		super(id, title, location);
 		this.message = message;
 	}
 
-	/** Constructor to make a reminder based on time */
-	public Reminder(long id, long time, String message) {
-		super(id, time);
+	/**
+	 * Constructor to make a reminder based on time.
+	 *
+	 * @param id the id
+	 * @param title the title
+	 * @param time the time
+	 * @param message the message
+	 */
+	public Reminder(final long id, final String title, long time, String message) {
+		super(id, title, time);
 		this.message = message;
 	}
 	
-	/** Constructor to make a reminder based on neither time nor location */
-	public Reminder(long id, String message) {
-		super(id);
+	/**
+	 * Constructor to make a reminder based on neither time nor location.
+	 *
+	 * @param id the id
+	 * @param message the message
+	 */
+	public Reminder(long id, final String title, String message) {
+		super(id, title);
 		this.message = message;
 	}
 
