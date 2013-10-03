@@ -5,7 +5,7 @@ import com.onesixty.seven.core.intefaces.ILocation;
 /**
  * The Class Notification.
  */
-public class Notification {
+public abstract class Notification {
 
 	/** The id. */
 	protected final long id;
